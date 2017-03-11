@@ -1,6 +1,14 @@
 <?php
 session_start();
 include_once 'dbconnect.php';
+if(isset($_SESSION['usr_id'])!=""){
+	if($_SESSION['usr_type']=="student"){
+		header("Location: student.php");
+	}
+	else{
+		header("Location: teacher.php");
+	}
+}
 ?>
 <!DOCTYPE html>
 <html>
