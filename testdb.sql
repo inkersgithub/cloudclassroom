@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 11, 2017 at 02:35 PM
+-- Generation Time: Mar 11, 2017 at 03:11 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -30,7 +30,7 @@ CREATE TABLE `studentclass` (
   `sn` int(11) NOT NULL,
   `email` varchar(40) NOT NULL,
   `classname` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -42,7 +42,7 @@ CREATE TABLE `teacherclass` (
   `sn` int(11) NOT NULL,
   `email` varchar(40) NOT NULL,
   `classname` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -74,15 +74,14 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `type`) VALUES
 -- Indexes for table `studentclass`
 --
 ALTER TABLE `studentclass`
-  ADD PRIMARY KEY (`sn`),
-  ADD UNIQUE KEY `email` (`email`,`classname`);
+  ADD PRIMARY KEY (`sn`);
 
 --
 -- Indexes for table `teacherclass`
 --
 ALTER TABLE `teacherclass`
   ADD PRIMARY KEY (`sn`),
-  ADD UNIQUE KEY `email` (`email`,`classname`);
+  ADD UNIQUE KEY `classname` (`classname`);
 
 --
 -- Indexes for table `users`
@@ -98,16 +97,6 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `studentclass`
---
-ALTER TABLE `studentclass`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `teacherclass`
---
-ALTER TABLE `teacherclass`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
