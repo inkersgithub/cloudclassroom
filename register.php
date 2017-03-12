@@ -97,12 +97,6 @@ if (isset($_POST['signup'])) {
 					</div>
 
 					<div class="form-group">
-						<label for="name">Mobile Number</label>
-						<input type="text" name="mobile" placeholder="Mobile Number" required value="<?php if($error) echo $email; ?>" class="form-control" />
-						<span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
-					</div>
-
-					<div class="form-group">
 						<label for="name">Password</label>
 						<input type="password" name="password" placeholder="Password" required class="form-control" />
 						<span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
