@@ -28,7 +28,7 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])==""){
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">CLOUDCLASSROOM Tec</a>
+			<a class="navbar-brand" href="index.php">CLOUD CLASSROOM Teacher</a>
 		</div>
 		<div class="collapse navbar-collapse" id="navbar1">
 			<ul class="nav navbar-nav navbar-right">
