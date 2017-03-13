@@ -1,9 +1,9 @@
 <?php
 session_start();
 include_once 'dbconnect.php';
-if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])==""){
-  if($_SESSION['usr_type']=="student"){
-    header("Location: student.php");
+if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
+  if($_SESSION['usr_type']=="teacher"){
+    header("Location: teacher.php");
   }
   else {
     header("Location: index.php");
@@ -13,7 +13,7 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])==""){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Teacher Home | CLOUD CLASSROOM</title>
+	<title>Student classroom | CLOUD CLASSROOM</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" >
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>

@@ -13,7 +13,7 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])==""){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Teacher Home | CLOUD CLASSROOM</title>
+	<title>Teacher classroom | CLOUD CLASSROOM</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" >
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>
