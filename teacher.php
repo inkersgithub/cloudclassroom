@@ -10,6 +10,18 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])==""){
   }
 }
 
+if (isset($_POST['createclass'])){
+
+    $test=$_SESSION['usr_email'];
+    $classname = mysqli_real_escape_string($con, $_POST['classname']);
+    if(mysqli_query($con, "INSERT INTO teacherclass(email,classname) VALUES('" . $test . "', '" . $classname . "')")) {
+      $successmsg = "Class Created Successfully <a href='index.php'>Click here to Login</a>";
+    } else {
+      $errormsg = "Error in registering...Please try again later!";
+    }
+
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,36 +58,28 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])==""){
 	</div>
 </nav>
 
-<button id="newclass" class="btn btn-primary" >Create new class</button>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <div class="row">
-  		<div class="col-md-4 col-md-offset-4 well">
-  			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="newclassform">
-  				<fieldset>
-  					<legend>Create new classroom</legend>
-
-  					<div class="form-group">
-  						<label for="name">Enter new class name</label>
-  						<input type="text" name="newclassname" placeholder="class name" required class="form-control" />
-  					</div>
-
-  					<div class="form-group">
-  						<input type="submit" name="createclass" value="Submit" class="btn btn-primary" />
-  					</div>
-  				</fieldset>
-  			</form>
-  			<span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
-  		</div>
-  	</div>
-  </div>
-
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 well">
+			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="classcreationform">
+				<fieldset>
+					<legend>Create Class</legend>
+          <div class="form-group">
+						<label for="name">Class Name</label>
+						<input type="text" name="classname" placeholder="Your Class Name" required class="form-control" />
+					</div>
+          <div class="form-group">
+						<input type="submit" name="createclass" value="Create" class="btn btn-primary" />
+					</div>
+				</fieldset>
+			</form>
+      <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
+			<span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+		</div>
+	</div>
 </div>
+
+
 
 
 
