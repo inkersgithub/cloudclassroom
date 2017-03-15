@@ -16,11 +16,14 @@ if (isset($_POST['createclass'])){
     $classname = mysqli_real_escape_string($con, $_POST['classname']);
     $uclassname = $email . '.' . $classname;
     if(mysqli_query($con, "INSERT INTO teacherclass(email,classname,uclassname) VALUES('" . $email . "', '" . $classname . "', '" . $uclassname . "')")) {
-      $successmsg = "Class Created Successfully <a href='index.php'>Click here to Login</a>";
+      echo "<script>
+      alert('Class created successfully');
+      </script>";
     } else {
-      $errormsg = "Error in registering...Please try again later!";
+      echo "<script>
+      alert('Error in creating class.Please try another name or try again later');
+      </script>";
     }
-
 }
 
 ?>
