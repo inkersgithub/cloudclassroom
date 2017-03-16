@@ -12,9 +12,10 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])==""){
 
 if (isset($_POST['createclass'])){
 
-    $test=$_SESSION['usr_email'];
+    $email=$_SESSION['usr_email'];
     $classname = mysqli_real_escape_string($con, $_POST['classname']);
-    if(mysqli_query($con, "INSERT INTO teacherclass(email,classname) VALUES('" . $test . "', '" . $classname . "')")) {
+    $uclassname = $email . '.' . $classname;
+    if(mysqli_query($con, "INSERT INTO teacherclass(email,classname,uclassname) VALUES('" . $email . "', '" . $classname . "', '" . $uclassname . "')")) {
       $successmsg = "Class Created Successfully <a href='index.php'>Click here to Login</a>";
     } else {
       $errormsg = "Error in registering...Please try again later!";
