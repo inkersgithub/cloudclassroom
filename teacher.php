@@ -22,20 +22,20 @@ if (isset($_POST['createclass'])){
       //    echo "<script>
       //    alert('Class created successfully');
       //    </script>";
-      $successmsg = "Class created successfully";
+      $successmsg = "Class created successfully,select classroom from above";
 
     } else {
     //     echo "<script>
     //     alert('Error in creating class.Please try another name or try again later');
     //     </script>";
-      $errormsg = "Class Cannot created";
+      $errormsg = "Can't create class as class with entered name already exists";
 
     }
 }
 else if (isset($_POST['enter'])){
   $enterclass= $_POST['entervalue'];
   if($enterclass!="default"){
-    $_SESSION[uclassname]=$email . $enterclass;
+    $_SESSION[uclassname]=$email . '.' . $enterclass;
     header("Location: teacherclass.php");
   }
 }
@@ -51,11 +51,7 @@ else if (isset($_POST['delete'])){
     }
   }
 }
-
-
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -83,7 +79,7 @@ else if (isset($_POST['delete'])){
 			<ul class="nav navbar-nav navbar-right">
 				<?php if (isset($_SESSION['usr_id'])) { ?>
 				<li><p class="navbar-text">Signed in as <?php echo $_SESSION['usr_name']; ?></p></li>
-				<li><a href="logout.php">Log Out</a></li>
+				<li><a href="logout.php">Log out</a></li>
 				<?php } else { ?>
 				<li><a href="index.php">Login</a></li>
 				<li><a href="register.php">Sign Up</a></li>
@@ -136,7 +132,7 @@ else if (isset($_POST['delete'])){
 					<legend>Create classroom</legend>
           <div class="form-group">
 						<label for="name">Class Name</label>
-						<input type="text" name="classname" value="" placeholder="Your Class Name" required class="form-control" />
+						<input type="text" name="classname" value="" placeholder="New class name" required class="form-control" />
 					</div>
           <div class="form-group">
 						<input type="submit" name="createclass" value="Create" class="btn btn-primary" />

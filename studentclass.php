@@ -34,7 +34,7 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
 			<ul class="nav navbar-nav navbar-right">
 				<?php if (isset($_SESSION['usr_id'])) { ?>
 				<li><p class="navbar-text">Signed in as <?php echo $_SESSION['usr_name']; ?></p></li>
-				<li><a href="logout.php">Log Out</a></li>
+				<li><a href="logout.php">Log out</a></li>
 				<?php } else { ?>
 				<li><a href="index.php">Login</a></li>
 				<li><a href="register.php">Sign Up</a></li>
