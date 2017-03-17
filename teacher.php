@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once 'dbconnect.php';
+$email=$_SESSION['usr_email'];
 if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])==""){
   if($_SESSION['usr_type']=="student"){
     header("Location: student.php");
@@ -102,7 +103,7 @@ else if (isset($_POST['delete'])){
             <select name="entervalue" class="form-control">
             <option value="pick">Select</option>
             <?php
-            $sql = mysqli_query($con, "SELECT classname From teacherclass");
+            $sql = mysqli_query($con, "SELECT classname From teacherclass Where email='$email'");
             $row = mysqli_num_rows($sql);
             while ($row = mysqli_fetch_array($sql)){
             echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
@@ -160,7 +161,7 @@ else if (isset($_POST['delete'])){
             <select name="deletevalue" class="form-control">
             <option value="pick">Select</option>
             <?php
-            $sql = mysqli_query($con, "SELECT classname From teacherclass");
+            $sql = mysqli_query($con, "SELECT classname From teacherclass Where email='$email'");
             $row = mysqli_num_rows($sql);
             while ($row = mysqli_fetch_array($sql)){
             echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
