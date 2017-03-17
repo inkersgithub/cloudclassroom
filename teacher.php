@@ -21,7 +21,7 @@ if (isset($_POST['createclass'])){
       //    echo "<script>
       //    alert('Class created successfully');
       //    </script>";
-      $successmsg = "Class" '.' $classname '.' " Created successfully";
+      $successmsg = "Class created successfully";
 
     } else {
     //     echo "<script>
@@ -47,7 +47,7 @@ else if (isset($_POST['enter'])){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Teacher Home | CLOUD CLASSROOM</title>
+	<title>Teacher Home | VIRTUAL CLASSROOM</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" >
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
   <link rel="stylesheet" href="css/popup.css" type="text/css" />
@@ -63,7 +63,7 @@ else if (isset($_POST['enter'])){
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">CLOUD CLASSROOM Teacher</a>
+			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM Teacher</a>
 		</div>
 		<div class="collapse navbar-collapse" id="navbar1">
 			<ul class="nav navbar-nav navbar-right">
@@ -131,7 +131,6 @@ else if (isset($_POST['enter'])){
 			</form>
       <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
 			<span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
-      <span class="text-test"><?php if (isset($msg)) { echo $msg; } ?></span>
 		</div>
 	</div>
 </div>
@@ -165,7 +164,6 @@ else if (isset($_POST['enter'])){
 			</form>
       <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
 			<span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
-      <span class="text-test"><?php if (isset($msg)) { echo $msg; } ?></span>
 		</div>
 	</div>
 </div>

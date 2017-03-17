@@ -13,7 +13,7 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Student classroom | CLOUD CLASSROOM</title>
+	<title>Student classroom | VIRTUAL CLASSROOM</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" >
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>
@@ -28,7 +28,7 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">CLOUD CLASSROOM Teacher</a>
+			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM Teacher</a>
 		</div>
 		<div class="collapse navbar-collapse" id="navbar1">
 			<ul class="nav navbar-nav navbar-right">

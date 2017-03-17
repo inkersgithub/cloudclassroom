@@ -39,7 +39,7 @@ if (isset($_POST['login'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login | CLOUD CLASSROOM</title>
+	<title>Login | VIRTUAL CLASSROOM</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" >
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>
@@ -55,7 +55,7 @@ if (isset($_POST['login'])) {
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">CLOUD CLASSROOM</a>
+			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM</a>
 		</div>
 		<!-- menu items -->
 		<div class="collapse navbar-collapse" id="navbar1">
