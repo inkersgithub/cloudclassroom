@@ -10,23 +10,40 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])==""){
   }
 }
 
+
 if (isset($_POST['createclass'])){
 
     $email=$_SESSION['usr_email'];
     $classname = mysqli_real_escape_string($con, $_POST['classname']);
     $uclassname = $email . '.' . $classname;
+
     if(mysqli_query($con, "INSERT INTO teacherclass(email,classname,uclassname) VALUES('" . $email . "', '" . $classname . "', '" . $uclassname . "')")) {
-      echo "<script>
-      alert('Class created successfully');
-      </script>";
+      //    echo "<script>
+      //    alert('Class created successfully');
+      //    </script>";
+      $successmsg = "Class" '.' $classname '.' " Created successfully";
+
     } else {
-      echo "<script>
-      alert('Error in creating class.Please try another name or try again later');
-      </script>";
+    //     echo "<script>
+    //     alert('Error in creating class.Please try another name or try again later');
+    //     </script>";
+      $errormsg = "Class Cannot created";
+
     }
 }
+else if (isset($_POST['enter'])){
+
+  $msg = $_POST['to_user'];
+
+
+}
+
 
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +55,7 @@ if (isset($_POST['createclass'])){
 <body>
 
 <nav class="navbar navbar-default" role="navigation">
-	<div class="container-fluid">
+	<div class="container-fluid" >
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
 				<span class="sr-only">Toggle navigation</span>
@@ -62,6 +79,41 @@ if (isset($_POST['createclass'])){
 	</div>
 </nav>
 
+<!--class enter -->
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 well">
+			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="classcreationform">
+				<fieldset>
+					<legend>Enter Class</legend>
+          <div class="form-group">
+            <select name="to_user" class="form-control">
+            <option value="pick">Select</option>
+            <?php
+            $sql = mysqli_query($con, "SELECT classname From teacherclass");
+            $row = mysqli_num_rows($sql);
+            while ($row = mysqli_fetch_array($sql)){
+            echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
+            }
+            ?>
+            </select>
+					</div>
+          <div class="form-group">
+						<input type="submit" name="enter" value="Enter" class="btn btn-primary" />
+					</div>
+				</fieldset>
+			</form>
+      <!--<span class="text-success"><?php //if (isset($successmsg)) { echo $successmsg; } ?></span>
+			<span class="text-danger"><?php// if (isset($errormsg)) { echo $errormsg; } ?></span> -->
+		</div>
+	</div>
+</div>
+
+<!--class enter ended -->
+
+<!--class creation -->
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4 well">
@@ -79,15 +131,47 @@ if (isset($_POST['createclass'])){
 			</form>
       <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
 			<span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+      <span class="text-test"><?php if (isset($msg)) { echo $msg; } ?></span>
 		</div>
 	</div>
 </div>
 
+<!--class creation ended -->
 
+<!--class Deletion -->
 
+<div class="container" >
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 well">
+			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="classcreationform">
+				<fieldset>
+					<legend>Delete Class</legend>
+          <div class="form-group">
+            <select name="to_user" class="form-control">
+            <option value="pick">Select</option>
+            <?php
+            $sql = mysqli_query($con, "SELECT classname From teacherclass");
+            $row = mysqli_num_rows($sql);
+            while ($row = mysqli_fetch_array($sql)){
+            echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
+            }
+            ?>
+            </select>
+					</div>
+          <div class="form-group">
+						<input type="submit" name="delete" value="Delete" class="btn btn-primary" />
+					</div>
+				</fieldset>
+			</form>
+      <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
+			<span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+      <span class="text-test"><?php if (isset($msg)) { echo $msg; } ?></span>
+		</div>
+	</div>
+</div>
 
+<!--class Deletion ended -->
 
-<script src="js/popup.js"></script>
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>

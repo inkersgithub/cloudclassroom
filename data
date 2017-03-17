@@ -1,0 +1,10 @@
+<select name="to_user" class="form-control">
+<option value="pick">Select</option>
+<?php
+$sql = mysqli_query($con, "SELECT classname From teacherclass");
+$row = mysqli_num_rows($sql);
+while ($row = mysqli_fetch_array($sql)){
+echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
+}
+?>
+</select>
