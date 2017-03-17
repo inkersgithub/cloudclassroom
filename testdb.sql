@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 11, 2017 at 03:11 PM
+-- Generation Time: Mar 17, 2017 at 02:17 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `studentclass` (
   `sn` int(11) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `classname` varchar(20) NOT NULL
+  `uclassname` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -41,8 +41,19 @@ CREATE TABLE `studentclass` (
 CREATE TABLE `teacherclass` (
   `sn` int(11) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `classname` varchar(20) NOT NULL
+  `classname` varchar(40) NOT NULL,
+  `uclassname` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teacherclass`
+--
+
+INSERT INTO `teacherclass` (`sn`, `email`, `classname`, `uclassname`) VALUES
+(22, 'zade@gmail.com', 'aaaa', 'zade@gmail.com.aaaa'),
+(21, 'zade@gmail.com', 'abcd1234', 'zade@gmail.com.abcd1234'),
+(20, 'zade@gmail.com', 'abc', 'zade@gmail.com.abc'),
+(19, 'zade@gmail.com', 'abcd', 'zade@gmail.com.abcd');
 
 -- --------------------------------------------------------
 
@@ -54,6 +65,7 @@ CREATE TABLE `users` (
   `id` int(8) NOT NULL,
   `name` varchar(30) NOT NULL,
   `email` varchar(60) NOT NULL,
+  `institute` varchar(70) NOT NULL,
   `password` varchar(40) NOT NULL,
   `type` varchar(7) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -62,9 +74,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `type`) VALUES
-(1, 'Zade', 'zade@gmail.com', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
-(2, 'Navaneetha', 'navaneetha.sree@gmail.com', 'e19d5cd5af0378da05f63f891c7467af', 'student');
+INSERT INTO `users` (`id`, `name`, `email`, `institute`, `password`, `type`) VALUES
+(1, 'Zade', 'zade@gmail.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
+(2, 'Navaneetha', 'navaneetha.sree@gmail.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'student'),
+(3, 'Anoop', 'annopkrishna@gmail.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'student'),
+(4, 'Anoop', 'anoop@fireman.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
+(5, 'Reshma', 'reshma@gmail.com', 'JCET', 'e19d5cd5af0378da05f63f891c7467af', 'teacher');
 
 --
 -- Indexes for dumped tables
@@ -81,7 +96,7 @@ ALTER TABLE `studentclass`
 --
 ALTER TABLE `teacherclass`
   ADD PRIMARY KEY (`sn`),
-  ADD UNIQUE KEY `classname` (`classname`);
+  ADD UNIQUE KEY `uclassname` (`uclassname`);
 
 --
 -- Indexes for table `users`
@@ -98,10 +113,20 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `studentclass`
+--
+ALTER TABLE `studentclass`
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `teacherclass`
+--
+ALTER TABLE `teacherclass`
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
