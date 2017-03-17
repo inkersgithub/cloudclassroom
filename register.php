@@ -14,6 +14,7 @@ $error = false;
 if (isset($_POST['signup'])) {
 	$name = mysqli_real_escape_string($con, $_POST['name']);
 	$email = mysqli_real_escape_string($con, $_POST['email']);
+	$institute = mysqli_real_escape_string($con, $_POST['institute']);
 	$password = mysqli_real_escape_string($con, $_POST['password']);
 	$cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
 	$type = mysqli_real_escape_string($con, $_POST['type']);
@@ -28,6 +29,10 @@ if (isset($_POST['signup'])) {
 		$error = true;
 		$email_error = "Please Enter Valid Email ID";
 	}
+	if (!preg_match("/^[a-zA-Z ]+$/",$institute)){
+		$error = true;
+		$institute_error = "Name of Institute must contain only alphabets and space";
+	}
 	if(strlen($password) < 5) {
 		$error = true;
 		$password_error = "Password must be minimum of 6 characters";
@@ -37,7 +42,7 @@ if (isset($_POST['signup'])) {
 		$cpassword_error = "Password and Confirm Password doesn't match";
 	}
 	if (!$error) {
-		if(mysqli_query($con, "INSERT INTO users(name,email,password,type) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "','" . $type . "')")) {
+		if(mysqli_query($con, "INSERT INTO users(name,email,institute,password,type) VALUES('" . $name . "', '" . $email . "', '" . $institute . "', '" . md5($password) . "','" . $type . "')")) {
 			$successmsg = "Successfully Registered! <a href='index.php'>Click here to Login</a>";
 		} else {
 			$errormsg = "Error in registering...Please try again later!";
@@ -94,6 +99,12 @@ if (isset($_POST['signup'])) {
 						<label for="name">Email</label>
 						<input type="text" name="email" placeholder="Email" required value="<?php if($error) echo $email; ?>" class="form-control" />
 						<span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
+					</div>
+
+					<div class="form-group">
+						<label for="name">Name of Institution</label>
+						<input type="text" name="institute" placeholder="College/School name" required value="<?php if($error) echo $institute; ?>" class="form-control" />
+						<span class="text-danger"><?php if (isset($institute_error)) echo $institute_error; ?></span>
 					</div>
 
 					<div class="form-group">
