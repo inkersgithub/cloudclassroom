@@ -31,11 +31,8 @@ if (isset($_POST['createclass'])){
 
     }
 }
-
 else if (isset($_POST['enter'])){
-
-  $msg = $_POST['entervalue'];
-
+  $_SESSION['uclassname'] = $_POST['entervalue'];
 }
 
 else if (isset($_POST['delete'])){
