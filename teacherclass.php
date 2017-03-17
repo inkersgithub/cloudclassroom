@@ -10,6 +10,7 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])=="" OR isset($
   }
 }
 $uclassname = $_SESSION['uclassname'];
+echo $uclassname;
 ?>
 <!DOCTYPE html>
 <html>

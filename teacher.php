@@ -33,20 +33,22 @@ if (isset($_POST['createclass'])){
     }
 }
 else if (isset($_POST['enter'])){
-  $_SESSION['uclassname'] = $_POST['entervalue'];
+  $enterclass= $_POST['entervalue'];
+  if($enterclass!="default"){
+    $_SESSION[uclassname]=$email . $enterclass;
+    header("Location: teacherclass.php");
+  }
 }
 
 else if (isset($_POST['delete'])){
-
   $classname = $_POST['deletevalue'];
   $email=$_SESSION['usr_email'];
   $uclassname = $email . '.' . $classname;
   $sql = "DELETE FROM teacherclass WHERE uclassname='$uclassname'";
-
-  if(mysqli_query($con, $sql)){
-
-    $dsuccessmsg = "Class deleted sucessfully";
-
+  if($classname!="default"){
+      if(mysqli_query($con, $sql)){
+      $dsuccessmsg = "Class deleted sucessfully";
+    }
   }
 }
 
@@ -101,7 +103,7 @@ else if (isset($_POST['delete'])){
 					<legend>Select classroom</legend>
           <div class="form-group">
             <select name="entervalue" class="form-control">
-            <option value="pick">Select</option>
+            <option value="default">Select</option>
             <?php
             $sql = mysqli_query($con, "SELECT classname From teacherclass Where email='$email'");
             $row = mysqli_num_rows($sql);
@@ -134,7 +136,7 @@ else if (isset($_POST['delete'])){
 					<legend>Create classroom</legend>
           <div class="form-group">
 						<label for="name">Class Name</label>
-						<input type="text" name="classname" placeholder="Your Class Name" required class="form-control" />
+						<input type="text" name="classname" value="" placeholder="Your Class Name" required class="form-control" />
 					</div>
           <div class="form-group">
 						<input type="submit" name="createclass" value="Create" class="btn btn-primary" />
@@ -142,7 +144,7 @@ else if (isset($_POST['delete'])){
 				</fieldset>
 			</form>
       <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
-			<!-- <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span> -->
+			<span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
 		</div>
 	</div>
 </div>
@@ -159,7 +161,7 @@ else if (isset($_POST['delete'])){
 					<legend>Delete classroom</legend>
           <div class="form-group">
             <select name="deletevalue" class="form-control">
-            <option value="pick">Select</option>
+            <option value="default">Select</option>
             <?php
             $sql = mysqli_query($con, "SELECT classname From teacherclass Where email='$email'");
             $row = mysqli_num_rows($sql);
