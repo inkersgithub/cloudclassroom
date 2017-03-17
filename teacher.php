@@ -86,7 +86,7 @@ else if (isset($_POST['enter'])){
 		<div class="col-md-4 col-md-offset-4 well">
 			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="classcreationform">
 				<fieldset>
-					<legend>Enter Class</legend>
+					<legend>Select classroom</legend>
           <div class="form-group">
             <select name="to_user" class="form-control">
             <option value="pick">Select</option>
@@ -119,7 +119,7 @@ else if (isset($_POST['enter'])){
 		<div class="col-md-4 col-md-offset-4 well">
 			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="classcreationform">
 				<fieldset>
-					<legend>Create Class</legend>
+					<legend>Create classroom</legend>
           <div class="form-group">
 						<label for="name">Class Name</label>
 						<input type="text" name="classname" placeholder="Your Class Name" required class="form-control" />
@@ -144,7 +144,7 @@ else if (isset($_POST['enter'])){
 		<div class="col-md-4 col-md-offset-4 well">
 			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="classcreationform">
 				<fieldset>
-					<legend>Delete Class</legend>
+					<legend>Delete classroom</legend>
           <div class="form-group">
             <select name="to_user" class="form-control">
             <option value="pick">Select</option>
