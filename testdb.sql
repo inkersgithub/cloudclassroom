@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 17, 2017 at 02:17 PM
+-- Generation Time: Mar 24, 2017 at 04:06 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -29,7 +29,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `studentclass` (
   `sn` int(11) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `uclassname` varchar(50) NOT NULL
+  `classname` varchar(40) NOT NULL,
+  `uclassname` varchar(50) NOT NULL,
+  `teachername` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -42,18 +44,20 @@ CREATE TABLE `teacherclass` (
   `sn` int(11) NOT NULL,
   `email` varchar(40) NOT NULL,
   `classname` varchar(40) NOT NULL,
-  `uclassname` varchar(50) NOT NULL
+  `uclassname` varchar(50) NOT NULL,
+  `teachername` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teacherclass`
 --
 
-INSERT INTO `teacherclass` (`sn`, `email`, `classname`, `uclassname`) VALUES
-(22, 'zade@gmail.com', 'aaaa', 'zade@gmail.com.aaaa'),
-(21, 'zade@gmail.com', 'abcd1234', 'zade@gmail.com.abcd1234'),
-(20, 'zade@gmail.com', 'abc', 'zade@gmail.com.abc'),
-(19, 'zade@gmail.com', 'abcd', 'zade@gmail.com.abcd');
+INSERT INTO `teacherclass` (`sn`, `email`, `classname`, `uclassname`, `teachername`) VALUES
+(34, 'zade@gmail.com', 'DBMS', 'zade@gmail.com.DBMS', 'Zade'),
+(33, 'zade@gmail.com', 'MIS', 'zade@gmail.com.MIS', 'Zade'),
+(31, 'reshma@gmail.com', 'COD', 'reshma@gmail.com.COD', 'Reshma'),
+(32, 'reshma@gmail.com', 'TOC', 'reshma@gmail.com.TOC', 'Reshma'),
+(35, 'zade@gmail.com', 'DCS', 'zade@gmail.com.DCS', 'Zade');
 
 -- --------------------------------------------------------
 
@@ -121,7 +125,7 @@ ALTER TABLE `studentclass`
 -- AUTO_INCREMENT for table `teacherclass`
 --
 ALTER TABLE `teacherclass`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `users`
 --

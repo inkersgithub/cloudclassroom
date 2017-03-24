@@ -57,7 +57,7 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
             <select name="entervalue" class="form-control">
             <option value="default">Select</option>
             <?php
-            $sql = mysqli_query($con, "SELECT classname From studentclass Where email='$email'");
+            $sql = mysqli_query($con, "SELECT classname,teachername From studentclass Where email='$email'");
             $row = mysqli_num_rows($sql);
             while ($row = mysqli_fetch_array($sql)){
             echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
@@ -88,10 +88,10 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
             <select name="entervalue" class="form-control">
             <option value="default">Select</option>
             <?php
-            $sql = mysqli_query($con, "SELECT classname From teacherclass");
+            $sql = mysqli_query($con, "SELECT classname,teachername From teacherclass");
             $row = mysqli_num_rows($sql);
             while ($row = mysqli_fetch_array($sql)){
-            echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
+              echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
             }
             ?>
             </select>
