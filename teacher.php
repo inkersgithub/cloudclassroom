@@ -114,8 +114,6 @@ else if (isset($_POST['delete'])){
 					</div>
 				</fieldset>
 			</form>
-      <!-- <span class="text-success"><?php //if (isset($successmsg)) { echo $successmsg; } ?></span> -->
-			<!-- <span class="text-danger"><?php// if (isset($errormsg)) { echo $errormsg; } ?></span> -->
 		</div>
 	</div>
 </div>
