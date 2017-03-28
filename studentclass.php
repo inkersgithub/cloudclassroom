@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 include_once 'dbconnect.php';
 if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){

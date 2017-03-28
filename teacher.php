@@ -17,7 +17,7 @@ if (isset($_POST['createclass'])){
     $email = $_SESSION['usr_email'];
     $username = $_SESSION['usr_name'];
     $classname = mysqli_real_escape_string($con, $_POST['classname']);
-    $uclassname = $email . '.' . $classname;
+    $uclassname = $email . '|' . $classname;
 
     if(mysqli_query($con, "INSERT INTO teacherclass(email,classname,uclassname,teachername) VALUES('" . $email . "', '" . $classname . "', '" . $uclassname . "', '" . $username . "')")) {
       //    echo "<script>
@@ -36,7 +36,7 @@ if (isset($_POST['createclass'])){
 else if (isset($_POST['enter'])){
   $enterclass= $_POST['entervalue'];
   if($enterclass!="default"){
-    $_SESSION[uclassname]=$email . '.' . $enterclass;
+    $_SESSION[uclassname]=$email . '|' . $enterclass;
     header("Location: teacherclass.php");
   }
 }
@@ -44,7 +44,7 @@ else if (isset($_POST['enter'])){
 else if (isset($_POST['delete'])){
   $classname = $_POST['deletevalue'];
   $email=$_SESSION['usr_email'];
-  $uclassname = $email . '.' . $classname;
+  $uclassname = $email . '|' . $classname;
   $sql = "DELETE FROM teacherclass WHERE uclassname='$uclassname'";
   if($classname!="default"){
       if(mysqli_query($con, $sql)){

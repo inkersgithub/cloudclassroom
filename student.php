@@ -10,6 +10,12 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
     header("Location: index.php");
   }
 }
+if (isset($_POST['request'])){
+    $option = $_POST['searchvalue'];
+    if($option!="default"){
+     echo $option;
+  }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -85,19 +91,19 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
 				<fieldset>
 					<legend>Search for your teacher</legend>
           <div class="form-group">
-            <select name="entervalue" class="form-control">
+            <select name="searchvalue" class="form-control">
             <option value="default">Select</option>
             <?php
-            $sql = mysqli_query($con, "SELECT classname,teachername From teacherclass");
+            $sql = mysqli_query($con, "SELECT * From teacherclass");
             $row = mysqli_num_rows($sql);
             while ($row = mysqli_fetch_array($sql)){
-              echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
+              echo "<option value='". $row['email'] ."." . $row['classname'] . "'>".$row['teachername']. "-" .$row['classname'] ."</option>" ;
             }
             ?>
             </select>
 					</div>
           <div class="form-group">
-						<input type="submit" name="enter" value="Request entry" class="btn btn-primary" />
+						<input type="submit" name="request" value="Requestentry" class="btn btn-primary" />
 					</div>
 				</fieldset>
 			</form>
