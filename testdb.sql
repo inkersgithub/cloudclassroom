@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 24, 2017 at 04:06 PM
+-- Generation Time: Mar 28, 2017 at 06:01 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -19,6 +19,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `testdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `request`
+--
+
+CREATE TABLE `request` (
+  `name` varchar(30) NOT NULL,
+  `email` varchar(60) NOT NULL,
+  `institute` varchar(70) NOT NULL,
+  `uclassname` varchar(50) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`name`, `email`, `institute`, `uclassname`, `status`) VALUES
+('Navaneetha', 'navaneetha.sree@gmail.com', 'PKDIMS', 'zade@gmail.com|DBMS', 0);
 
 -- --------------------------------------------------------
 
@@ -53,11 +74,11 @@ CREATE TABLE `teacherclass` (
 --
 
 INSERT INTO `teacherclass` (`sn`, `email`, `classname`, `uclassname`, `teachername`) VALUES
-(34, 'zade@gmail.com', 'DBMS', 'zade@gmail.com.DBMS', 'Zade'),
-(33, 'zade@gmail.com', 'MIS', 'zade@gmail.com.MIS', 'Zade'),
-(31, 'reshma@gmail.com', 'COD', 'reshma@gmail.com.COD', 'Reshma'),
-(32, 'reshma@gmail.com', 'TOC', 'reshma@gmail.com.TOC', 'Reshma'),
-(35, 'zade@gmail.com', 'DCS', 'zade@gmail.com.DCS', 'Zade');
+(34, 'zade@gmail.com', 'DBMS', 'zade@gmail.com|DBMS', 'Zade'),
+(33, 'zade@gmail.com', 'MIS', 'zade@gmail.com|MIS', 'Zade'),
+(31, 'reshma@gmail.com', 'COD', 'reshma@gmail.com|COD', 'Reshma'),
+(32, 'reshma@gmail.com', 'TOC', 'reshma@gmail.com|TOC', 'Reshma'),
+(35, 'zade@gmail.com', 'DCS', 'zade@gmail.com|DCS', 'Zade');
 
 -- --------------------------------------------------------
 
@@ -79,10 +100,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `institute`, `password`, `type`) VALUES
-(1, 'Zade', 'zade@gmail.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
-(2, 'Navaneetha', 'navaneetha.sree@gmail.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'student'),
-(3, 'Anoop', 'annopkrishna@gmail.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'student'),
-(4, 'Anoop', 'anoop@fireman.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
+(1, 'Zade', 'zade@gmail.com', 'JCET', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
+(2, 'Navaneetha', 'navaneetha.sree@gmail.com', 'PKDIMS', 'e19d5cd5af0378da05f63f891c7467af', 'student'),
+(3, 'Anoop', 'annopkrishna@gmail.com', 'JCET', 'e19d5cd5af0378da05f63f891c7467af', 'student'),
+(4, 'Anoop', 'anoop@fireman.com', 'JCET', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
 (5, 'Reshma', 'reshma@gmail.com', 'JCET', 'e19d5cd5af0378da05f63f891c7467af', 'teacher');
 
 --
