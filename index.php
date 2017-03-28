@@ -24,6 +24,7 @@ if (isset($_POST['login'])) {
 		$_SESSION['usr_name'] = $row['name'];
 		$_SESSION['usr_type'] = $row['type'];
 		$_SESSION['usr_email'] = $row['email'];
+		$_SESSION['institute'] = $row['institute'];
 		if($_SESSION['usr_type']=="student"){
     	header('Location: student.php');
     }

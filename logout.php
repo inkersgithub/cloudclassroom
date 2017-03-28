@@ -7,6 +7,7 @@ if(isset($_SESSION['usr_id'])) {
 	unset($_SESSION['usr_name']);
 	unset($_SESSION['uclassname']);
 	unset($_SESSION['usr_email']);
+	unset($_SESSION['institute']);
 	header("Location: index.php");
 } else {
 	header("Location: index.php");

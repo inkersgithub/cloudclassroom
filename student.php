@@ -10,10 +10,24 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
     header("Location: index.php");
   }
 }
-if (isset($_POST['request'])){
-    $option = $_POST['searchvalue'];
-    if($option!="default"){
-     echo $option;
+if(isset($_POST['request'])){
+  $uclassname = $_POST['searchvalue'];
+  $name = $_SESSION['usr_name'];
+  $institute = $_SESSION['institute'];
+  if($uclassname!="default"){
+    if(mysqli_query($con, "INSERT INTO request(name,email,institute,uclassname) VALUES('" . $name . "', '" . $email . "', '" . $institute . "', '" . $uclassname . "')")) {
+      //    echo "<script>
+      //    alert('Class created successfully');
+      //    </script>";
+      $successmsg = "Request sent successfully!";
+
+    } else {
+    //     echo "<script>
+    //     alert('Error in creating class.Please try another name or try again later');
+    //     </script>";
+      $errormsg = "Can't send request,please try again later.Inconvenience regreted";
+
+    }
   }
 }
 ?>
@@ -97,16 +111,18 @@ if (isset($_POST['request'])){
             $sql = mysqli_query($con, "SELECT * From teacherclass");
             $row = mysqli_num_rows($sql);
             while ($row = mysqli_fetch_array($sql)){
-              echo "<option value='". $row['email'] ."." . $row['classname'] . "'>".$row['teachername']. "-" .$row['classname'] ."</option>" ;
+              echo "<option value='". $row['email'] ."|" . $row['classname'] . "'>".$row['teachername']. "-" .$row['classname'] ."</option>" ;
             }
             ?>
             </select>
 					</div>
           <div class="form-group">
-						<input type="submit" name="request" value="Requestentry" class="btn btn-primary" />
+						<input type="submit" name="request" value="Request entry" class="btn btn-primary" />
 					</div>
 				</fieldset>
 			</form>
+      <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
+			<span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
 		</div>
 	</div>
 </div>
