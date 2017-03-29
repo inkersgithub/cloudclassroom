@@ -10,7 +10,7 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])=="" OR isset($
   }
 }
 $uclassname = $_SESSION['uclassname'];
-echo $uclassname;
+//echo $uclassname;
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,10 +50,14 @@ echo $uclassname;
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-2" style="height :560px; overflow-y:scroll;">
       <h3>Column 1</h3>
+
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+
     </div>
     <div class="col-sm-6">
       <h3>Column 2</h3>
