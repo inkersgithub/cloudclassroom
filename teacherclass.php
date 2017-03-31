@@ -11,6 +11,7 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])=="" OR isset($
 }
 $uclassname = $_SESSION['uclassname'];
 //echo $uclassname;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,13 +51,40 @@ $uclassname = $_SESSION['uclassname'];
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-2" style="height :560px; overflow-y:scroll;">
-      <h3>Column 1</h3>
+    <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:black;">
+      <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
+      <h3 align="justify"><u>Student requests</u></h3>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        <?php
+        $i=0;
+        $sql = mysqli_query($con, "SELECT * From request Where uclassname='$uclassname' AND status='0'");
+        $row = mysqli_num_rows($sql);
+        while ($row = mysqli_fetch_array($sql)){
+          $email=$row['email'];
+          echo "Name      : ".$row['name']."<br>";
+          echo "Email     : ".$row['email']."<br>";
+          echo "Institute : ".$row['institute']."<br><br>";
+
+          ?>
+            <div class="form-group">
+						<input type="submit" name="accept$i" value="Accept" class="btn btn-primary" />
+
+            <?php
+
+            if (isset($_POST['accept$i'])) {
+
+                $test = $_POST['accept$i'];
+                echo $test;
+
+            }
+
+            ?>
+
+						<!-- <input type="submit" name="reject" value="Reject" class="btn btn-primary" /> -->
+					</div>
+        <?php } ?>
+
+
 
     </div>
     <div class="col-sm-6">

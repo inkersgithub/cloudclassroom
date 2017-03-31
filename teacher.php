@@ -121,7 +121,7 @@ else if (isset($_POST['delete'])){
 
 <!--class enter ended -->
 
-<!--class creation -->
+<!--class creation -->    
 
 <div class="container">
 	<div class="row">
