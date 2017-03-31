@@ -51,40 +51,34 @@ $uclassname = $_SESSION['uclassname'];
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:black;">
+    <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
-      <h3 align="justify"><u>Student requests</u></h3>
+      <h3 align="center"><u>Student requests</u></h3>
 
-        <?php
-        $i=0;
-        $sql = mysqli_query($con, "SELECT * From request Where uclassname='$uclassname' AND status='0'");
-        $row = mysqli_num_rows($sql);
-        while ($row = mysqli_fetch_array($sql)){
-          $email=$row['email'];
+      <?php
+        $res = mysqli_query($con,"SELECT sn, name, email, institute FROM request WHERE uclassname='$uclassname' AND status='0'");
+
+        while ($row = mysqli_fetch_array($res)) {
+          $sn = $row['sn'];
           echo "Name      : ".$row['name']."<br>";
           echo "Email     : ".$row['email']."<br>";
           echo "Institute : ".$row['institute']."<br><br>";
-
-          ?>
-            <div class="form-group">
-						<input type="submit" name="accept$i" value="Accept" class="btn btn-primary" />
-
-            <?php
-
-            if (isset($_POST['accept$i'])) {
-
-                $test = $_POST['accept$i'];
-                echo $test;
-
-            }
-
-            ?>
-
-						<!-- <input type="submit" name="reject" value="Reject" class="btn btn-primary" /> -->
-					</div>
-        <?php } ?>
+          echo '<input type="submit" name="accept'. $row['sn'] .'" value="Accept" class="btn btn-primary"/>  ';
+          echo '<input type="submit" name="delete'. $row['sn'] .'" value="Delete" class="btn btn-primary"/><br>';
 
 
+
+          if(isset($_POST['delete'.$sn])){
+            mysqli_query($con,"UPDATE request SET status='2' WHERE sn='$sn'");
+            header("Location: teacherclass.php");
+          }
+          if(isset($_POST['accept'.$sn])){
+              mysqli_query($con,"UPDATE request SET status='1' WHERE sn='$sn'");
+              header("Location: teacherclass.php");
+          }
+
+        }
+      ?>
 
     </div>
     <div class="col-sm-6">
@@ -92,8 +86,8 @@ $uclassname = $_SESSION['uclassname'];
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
-    <div class="col-sm-3">
-      <h3>Column 3</h3>
+    <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
+      <h3 align="center"><u>Student requests</u></h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>

@@ -8,3 +8,38 @@ echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" 
 }
 ?>
 </select>
+
+
+
+
+
+
+
+<?php
+$i=0;
+$sql = mysqli_query($con, "SELECT * From request Where uclassname='$uclassname' AND status='0'");
+$row = mysqli_num_rows($sql);
+while ($row = mysqli_fetch_array($sql)){
+  $email=$row['email'];
+  echo "Name      : ".$row['name']."<br>";
+  echo "Email     : ".$row['email']."<br>";
+  echo "Institute : ".$row['institute']."<br><br>";
+  $sn=$row['sn'];
+  ?>
+    <div class="form-group">
+    <input type="submit" name="rowButton'. $row['sn'] .'" value="Accept" class="btn btn-primary" />
+
+    <?php
+
+    if (isset($_POST['rowButton'.$sn])) {
+
+        $test = $row['name'];
+        echo $test;
+
+    }
+
+    ?>
+
+    <!-- <input type="submit" name="reject" value="Reject" class="btn btn-primary" /> -->
+  </div>
+<?php } ?>
