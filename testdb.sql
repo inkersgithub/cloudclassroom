@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 28, 2017 at 06:01 PM
+-- Generation Time: Mar 31, 2017 at 11:36 AM
 -- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,19 +27,24 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `request` (
-  `name` varchar(30) NOT NULL,
-  `email` varchar(60) NOT NULL,
-  `institute` varchar(70) NOT NULL,
-  `uclassname` varchar(50) NOT NULL,
-  `status` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `sn` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `institute` varchar(40) NOT NULL,
+  `uclassname` varchar(60) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`name`, `email`, `institute`, `uclassname`, `status`) VALUES
-('Navaneetha', 'navaneetha.sree@gmail.com', 'PKDIMS', 'zade@gmail.com|DBMS', 0);
+INSERT INTO `request` (`sn`, `name`, `email`, `institute`, `uclassname`, `status`) VALUES
+(41, 'test', 'test@gmail.com', 'jcetq', 'zade@gmail.com|DBMS', 1),
+(38, 'Vavachi', 'vavachi@vavacorp.com', 'JAWAHARLAL COLLEGE OF ENGINEERING AND TE', 'zade@gmail.com|DBMS', 2),
+(37, 'Vavachi', 'vavachi@vavacorp.com', 'JAWAHARLAL COLLEGE OF ENGINEERING AND TE', 'zade@gmail.com|DBMS', 1),
+(40, 'test', 'test@gmail.com', 'jcetq', 'zade@gmail.com|DBMS', 2),
+(39, 'Vavachi', 'vavachi@vavacorp.com', 'JAWAHARLAL COLLEGE OF ENGINEERING AND TE', 'zade@gmail.com|DBMS', 1);
 
 -- --------------------------------------------------------
 
@@ -74,11 +79,11 @@ CREATE TABLE `teacherclass` (
 --
 
 INSERT INTO `teacherclass` (`sn`, `email`, `classname`, `uclassname`, `teachername`) VALUES
-(34, 'zade@gmail.com', 'DBMS', 'zade@gmail.com|DBMS', 'Zade'),
-(33, 'zade@gmail.com', 'MIS', 'zade@gmail.com|MIS', 'Zade'),
-(31, 'reshma@gmail.com', 'COD', 'reshma@gmail.com|COD', 'Reshma'),
-(32, 'reshma@gmail.com', 'TOC', 'reshma@gmail.com|TOC', 'Reshma'),
-(35, 'zade@gmail.com', 'DCS', 'zade@gmail.com|DCS', 'Zade');
+(34, 'zade@gmail.com', 'DBMS', 'zade@gmail.com.DBMS', 'Zade'),
+(33, 'zade@gmail.com', 'MIS', 'zade@gmail.com.MIS', 'Zade'),
+(31, 'reshma@gmail.com', 'COD', 'reshma@gmail.com.COD', 'Reshma'),
+(32, 'reshma@gmail.com', 'TOC', 'reshma@gmail.com.TOC', 'Reshma'),
+(35, 'zade@gmail.com', 'DCS', 'zade@gmail.com.DCS', 'Zade');
 
 -- --------------------------------------------------------
 
@@ -100,15 +105,23 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `institute`, `password`, `type`) VALUES
-(1, 'Zade', 'zade@gmail.com', 'JCET', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
-(2, 'Navaneetha', 'navaneetha.sree@gmail.com', 'PKDIMS', 'e19d5cd5af0378da05f63f891c7467af', 'student'),
-(3, 'Anoop', 'annopkrishna@gmail.com', 'JCET', 'e19d5cd5af0378da05f63f891c7467af', 'student'),
-(4, 'Anoop', 'anoop@fireman.com', 'JCET', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
-(5, 'Reshma', 'reshma@gmail.com', 'JCET', 'e19d5cd5af0378da05f63f891c7467af', 'teacher');
+(1, 'Zade', 'zade@gmail.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
+(2, 'Navaneetha', 'navaneetha.sree@gmail.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'student'),
+(3, 'Anoop', 'annopkrishna@gmail.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'student'),
+(4, 'Anoop', 'anoop@fireman.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
+(5, 'Reshma', 'reshma@gmail.com', 'JCET', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
+(6, 'test', 'test@gmail.com', 'jcetq', '21232f297a57a5a743894a0e4a801fc3', 'student'),
+(7, 'Vavachi', 'vavachi@vavacorp.com', 'JAWAHARLAL COLLEGE OF ENGINEERING AND TECHNOLOGY LAKKIDI PALAKKAD KERA', 'e19d5cd5af0378da05f63f891c7467af', 'student');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `request`
+--
+ALTER TABLE `request`
+  ADD PRIMARY KEY (`sn`);
 
 --
 -- Indexes for table `studentclass`
@@ -138,6 +151,11 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `request`
+--
+ALTER TABLE `request`
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+--
 -- AUTO_INCREMENT for table `studentclass`
 --
 ALTER TABLE `studentclass`
@@ -151,7 +169,7 @@ ALTER TABLE `teacherclass`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
