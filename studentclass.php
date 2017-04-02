@@ -1,7 +1,7 @@
-<?php 
+<?php
 session_start();
 include_once 'dbconnect.php';
-if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
+if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])=="" OR isset($_SESSION['uclassname'])==""){
   if($_SESSION['usr_type']=="teacher"){
     header("Location: teacher.php");
   }
@@ -9,6 +9,7 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
     header("Location: index.php");
   }
 }
+// echo $_SESSION['uclassname'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,8 +49,8 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-3">
-      <h3>Column 1</h3>
+    <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
+      <h3 align="center">Column 1</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
@@ -58,8 +59,8 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
-    <div class="col-sm-3">
-      <h3>Column 3</h3>
+    <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
+      <h3 align="center">Column 3</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>

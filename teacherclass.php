@@ -10,6 +10,7 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])=="" OR isset($
   }
 }
 $uclassname = $_SESSION['uclassname'];
+$classname = $_SESSION['classname'];
 //echo $uclassname;
 
 ?>
@@ -66,14 +67,13 @@ $uclassname = $_SESSION['uclassname'];
           echo '<input type="submit" name="accept'. $row['sn'] .'" value="Accept" class="btn btn-primary"/>  ';
           echo '<input type="submit" name="delete'. $row['sn'] .'" value="Delete" class="btn btn-primary"/><br>';
 
-
-
           if(isset($_POST['delete'.$sn])){
             mysqli_query($con,"UPDATE request SET status='2' WHERE sn='$sn'");
             header("Location: teacherclass.php");
           }
           if(isset($_POST['accept'.$sn])){
               mysqli_query($con,"UPDATE request SET status='1' WHERE sn='$sn'");
+              mysqli_query($con,"INSERT INTO studentclass(email,classname,uclassname,teachername) VALUES('" . $row['email'] . "', '" . $classname . "', '" . $uclassname . "', '" . $_SESSION['usr_name'] . "')");
               header("Location: teacherclass.php");
           }
 
@@ -82,12 +82,12 @@ $uclassname = $_SESSION['uclassname'];
 
     </div>
     <div class="col-sm-6">
-      <h3>Column 2</h3>
+      <h3 align="center">Column 2</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
     <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
-      <h3 align="center"><u>Student requests</u></h3>
+      <h3 align="center"><u>Notifications</u></h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>

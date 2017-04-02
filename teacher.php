@@ -37,6 +37,7 @@ else if (isset($_POST['enter'])){
   $enterclass= $_POST['entervalue'];
   if($enterclass!="default"){
     $_SESSION[uclassname]=$email . '|' . $enterclass;
+    $_SESSION[classname]=$enterclass;
     header("Location: teacherclass.php");
   }
 }
@@ -121,7 +122,7 @@ else if (isset($_POST['delete'])){
 
 <!--class enter ended -->
 
-<!--class creation -->    
+<!--class creation -->
 
 <div class="container">
 	<div class="row">

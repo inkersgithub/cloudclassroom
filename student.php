@@ -2,7 +2,7 @@
 session_start();
 include_once 'dbconnect.php';
 $email=$_SESSION['usr_email'];
-if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
+if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])=="" ){
   if($_SESSION['usr_type']=="teacher"){
     header("Location: teacher.php");
   }
@@ -16,18 +16,21 @@ if(isset($_POST['request'])){
   $institute = $_SESSION['institute'];
   if($uclassname!="default"){
     if(mysqli_query($con, "INSERT INTO request(name,email,institute,uclassname) VALUES('" . $name . "', '" . $email . "', '" . $institute . "', '" . $uclassname . "')")) {
-      //    echo "<script>
-      //    alert('Class created successfully');
-      //    </script>";
+
       $successmsg = "Request sent successfully!";
 
     } else {
-    //     echo "<script>
-    //     alert('Error in creating class.Please try another name or try again later');
-    //     </script>";
+
       $errormsg = "Can't send request,please try again later.Inconvenience regreted";
 
     }
+  }
+}
+if (isset($_POST['enterclass'])){
+  $enterclass = $_POST['enterclass'];
+  if($enterclass!="default"){
+    $_SESSION[uclassname]=$enterclass; 
+    header("Location: studentclass.php");
   }
 }
 ?>
@@ -74,13 +77,14 @@ if(isset($_POST['request'])){
 				<fieldset>
 					<legend>Select classroom</legend>
           <div class="form-group">
-            <select name="entervalue" class="form-control">
+            <select name="enterclass" class="form-control">
             <option value="default">Select</option>
             <?php
-            $sql = mysqli_query($con, "SELECT classname,teachername From studentclass Where email='$email'");
+
+            $sql = mysqli_query($con, "SELECT * FROM studentclass WHERE email='$email'");
             $row = mysqli_num_rows($sql);
             while ($row = mysqli_fetch_array($sql)){
-            echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
+            echo "<option value='". $row['uclassname'] ."'>".$row['teachername']. "-" .$row['classname'] ."</option>" ;
             }
             ?>
             </select>
@@ -99,7 +103,7 @@ if(isset($_POST['request'])){
 <!--class search -->
 
 <div class="container">
-	<div class="row">        
+	<div class="row">
 		<div class="col-md-4 col-md-offset-4 well">
 			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="classcreationform">
 				<fieldset>
