@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 31, 2017 at 11:36 AM
+-- Generation Time: Apr 02, 2017 at 10:03 AM
 -- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -35,17 +35,6 @@ CREATE TABLE `request` (
   `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `request`
---
-
-INSERT INTO `request` (`sn`, `name`, `email`, `institute`, `uclassname`, `status`) VALUES
-(41, 'test', 'test@gmail.com', 'jcetq', 'zade@gmail.com|DBMS', 1),
-(38, 'Vavachi', 'vavachi@vavacorp.com', 'JAWAHARLAL COLLEGE OF ENGINEERING AND TE', 'zade@gmail.com|DBMS', 2),
-(37, 'Vavachi', 'vavachi@vavacorp.com', 'JAWAHARLAL COLLEGE OF ENGINEERING AND TE', 'zade@gmail.com|DBMS', 1),
-(40, 'test', 'test@gmail.com', 'jcetq', 'zade@gmail.com|DBMS', 2),
-(39, 'Vavachi', 'vavachi@vavacorp.com', 'JAWAHARLAL COLLEGE OF ENGINEERING AND TE', 'zade@gmail.com|DBMS', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -74,17 +63,6 @@ CREATE TABLE `teacherclass` (
   `teachername` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `teacherclass`
---
-
-INSERT INTO `teacherclass` (`sn`, `email`, `classname`, `uclassname`, `teachername`) VALUES
-(34, 'zade@gmail.com', 'DBMS', 'zade@gmail.com.DBMS', 'Zade'),
-(33, 'zade@gmail.com', 'MIS', 'zade@gmail.com.MIS', 'Zade'),
-(31, 'reshma@gmail.com', 'COD', 'reshma@gmail.com.COD', 'Reshma'),
-(32, 'reshma@gmail.com', 'TOC', 'reshma@gmail.com.TOC', 'Reshma'),
-(35, 'zade@gmail.com', 'DCS', 'zade@gmail.com.DCS', 'Zade');
-
 -- --------------------------------------------------------
 
 --
@@ -101,19 +79,6 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `institute`, `password`, `type`) VALUES
-(1, 'Zade', 'zade@gmail.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
-(2, 'Navaneetha', 'navaneetha.sree@gmail.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'student'),
-(3, 'Anoop', 'annopkrishna@gmail.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'student'),
-(4, 'Anoop', 'anoop@fireman.com', '', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
-(5, 'Reshma', 'reshma@gmail.com', 'JCET', 'e19d5cd5af0378da05f63f891c7467af', 'teacher'),
-(6, 'test', 'test@gmail.com', 'jcetq', '21232f297a57a5a743894a0e4a801fc3', 'student'),
-(7, 'Vavachi', 'vavachi@vavacorp.com', 'JAWAHARLAL COLLEGE OF ENGINEERING AND TECHNOLOGY LAKKIDI PALAKKAD KERA', 'e19d5cd5af0378da05f63f891c7467af', 'student');
-
---
 -- Indexes for dumped tables
 --
 
@@ -121,20 +86,23 @@ INSERT INTO `users` (`id`, `name`, `email`, `institute`, `password`, `type`) VAL
 -- Indexes for table `request`
 --
 ALTER TABLE `request`
-  ADD PRIMARY KEY (`sn`);
+  ADD PRIMARY KEY (`email`,`uclassname`),
+  ADD UNIQUE KEY `sn` (`sn`);
 
 --
 -- Indexes for table `studentclass`
 --
 ALTER TABLE `studentclass`
-  ADD PRIMARY KEY (`sn`);
+  ADD PRIMARY KEY (`email`,`uclassname`),
+  ADD UNIQUE KEY `sn` (`sn`);
 
 --
 -- Indexes for table `teacherclass`
 --
 ALTER TABLE `teacherclass`
   ADD PRIMARY KEY (`sn`),
-  ADD UNIQUE KEY `uclassname` (`uclassname`);
+  ADD UNIQUE KEY `uclassname` (`uclassname`),
+  ADD UNIQUE KEY `sn` (`sn`);
 
 --
 -- Indexes for table `users`
@@ -154,12 +122,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `studentclass`
 --
 ALTER TABLE `studentclass`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `teacherclass`
 --

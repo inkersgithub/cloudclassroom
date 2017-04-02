@@ -21,7 +21,7 @@ if(isset($_POST['request'])){
 
     } else {
 
-      $errormsg = "Can't send request,please try again later.Inconvenience regreted";
+      $errormsg = "Can't send request as you have already sent one";
 
     }
   }
@@ -29,7 +29,7 @@ if(isset($_POST['request'])){
 if (isset($_POST['enterclass'])){
   $enterclass = $_POST['enterclass'];
   if($enterclass!="default"){
-    $_SESSION[uclassname]=$enterclass; 
+    $_SESSION[uclassname]=$enterclass;
     header("Location: studentclass.php");
   }
 }
