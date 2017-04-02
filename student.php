@@ -10,19 +10,24 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])=="" ){
     header("Location: index.php");
   }
 }
+
+
 if(isset($_POST['request'])){
   $uclassname = $_POST['searchvalue'];
+  $temp = explode('|',$uclassname);
+  $classname = end($temp);
   $name = $_SESSION['usr_name'];
   $institute = $_SESSION['institute'];
   if($uclassname!="default"){
-    if(mysqli_query($con, "INSERT INTO request(name,email,institute,uclassname) VALUES('" . $name . "', '" . $email . "', '" . $institute . "', '" . $uclassname . "')")) {
-
+    $query=mysqli_query($con,"SELECT * FROM studentclass where email='".$email."' AND uclassname='".$uclassname."'");
+    if(mysqli_num_rows($query) != 0) {
+      $row = mysqli_fetch_array($query);
+      $classname=$row['classname'];
+      $errormsg = "You have already joined in $classname classroom";
+    } elseif(mysqli_query($con, "INSERT INTO request(name,email,institute,uclassname,classname) VALUES('" . $name . "', '" . $email . "', '" . $institute . "', '" . $uclassname . "','". $classname ."')")) {
       $successmsg = "Request sent successfully!";
-
     } else {
-
       $errormsg = "Can't send request as you have already sent one";
-
     }
   }
 }
@@ -133,6 +138,28 @@ if (isset($_POST['enterclass'])){
 
 <!--class search ended -->
 
+<!--request response notification-->
+<?php
+$query=mysqli_query($con,"SELECT * FROM request where email='".$email."' AND (status='1' OR status='2')");
+while($row = mysqli_fetch_array($query))
+{
+  $status=$row['status'];
+  if($status==1){
+    $classname=$row['classname'];
+    $message="Your request for admission to classroom $classname is accepted by its teacher";
+    echo $message."<br>";
+    mysqli_query($con,"DELETE FROM request where email='".$email."' AND status='1'");
+  }
+  elseif($status==2){
+    $classname=$row['classname'];
+    $message="Your request for admission to classroom $classname is rejected by its teacher";
+    echo $message."<br>";
+    mysqli_query($con,"DELETE FROM request where email='".$email."' AND status='2'");
+  }
+}
+?>
+
+<!--request response notification ended-->
 
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/bootstrap.min.js"></script>

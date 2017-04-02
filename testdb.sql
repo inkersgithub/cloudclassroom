@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2017 at 10:03 AM
+-- Generation Time: Apr 02, 2017 at 12:31 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -32,8 +32,16 @@ CREATE TABLE `request` (
   `email` varchar(40) NOT NULL,
   `institute` varchar(40) NOT NULL,
   `uclassname` varchar(60) NOT NULL,
+  `classname` varchar(50) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`sn`, `name`, `email`, `institute`, `uclassname`, `classname`, `status`) VALUES
+(61, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', 'zade@gmail.com|DBMS', 'DBMS', 0);
 
 -- --------------------------------------------------------
 
@@ -49,6 +57,15 @@ CREATE TABLE `studentclass` (
   `teachername` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `studentclass`
+--
+
+INSERT INTO `studentclass` (`sn`, `email`, `classname`, `uclassname`, `teachername`) VALUES
+(3, 'sree@gmail.com', 'TOC', 'zade@gmail.com|TOC', 'Zade'),
+(5, 'sree@gmail.com', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
+(6, 'sree@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop');
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +79,16 @@ CREATE TABLE `teacherclass` (
   `uclassname` varchar(50) NOT NULL,
   `teachername` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teacherclass`
+--
+
+INSERT INTO `teacherclass` (`sn`, `email`, `classname`, `uclassname`, `teachername`) VALUES
+(36, 'zade@gmail.com', 'TOC', 'zade@gmail.com|TOC', 'Zade'),
+(37, 'zade@gmail.com', 'DBMS', 'zade@gmail.com|DBMS', 'Zade'),
+(38, 'anoop@gmail.com', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
+(39, 'anoop@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop');
 
 -- --------------------------------------------------------
 
@@ -77,6 +104,16 @@ CREATE TABLE `users` (
   `password` varchar(40) NOT NULL,
   `type` varchar(7) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `institute`, `password`, `type`) VALUES
+(8, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', '21232f297a57a5a743894a0e4a801fc3', 'student'),
+(9, 'Zade', 'zade@gmail.com', 'JCET', '21232f297a57a5a743894a0e4a801fc3', 'teacher'),
+(10, 'Anoop', 'anoop@gmail.com', 'JCET', '21232f297a57a5a743894a0e4a801fc3', 'teacher'),
+(11, 'Ashi', 'ashi@gmail.com', 'MES', '21232f297a57a5a743894a0e4a801fc3', 'student');
 
 --
 -- Indexes for dumped tables
@@ -122,22 +159,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 --
 -- AUTO_INCREMENT for table `studentclass`
 --
 ALTER TABLE `studentclass`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `teacherclass`
 --
 ALTER TABLE `teacherclass`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
