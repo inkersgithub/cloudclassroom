@@ -16,10 +16,11 @@ if (isset($_POST['createclass'])){
 
     $email = $_SESSION['usr_email'];
     $username = $_SESSION['usr_name'];
+    $institute = $_SESSION['institute'];
     $classname = mysqli_real_escape_string($con, $_POST['classname']);
     $uclassname = $email . '|' . $classname;
 
-    if(mysqli_query($con, "INSERT INTO teacherclass(email,classname,uclassname,teachername) VALUES('" . $email . "', '" . $classname . "', '" . $uclassname . "', '" . $username . "')")) {
+    if(mysqli_query($con, "INSERT INTO teacherclass(email,classname,uclassname,teachername,institute) VALUES('" . $email . "', '" . $classname . "', '" . $uclassname . "', '" . $username . "', '" . $institute . "')")) {
       //    echo "<script>
       //    alert('Class created successfully');
       //    </script>";
@@ -49,7 +50,9 @@ else if (isset($_POST['delete'])){
   $sql = "DELETE FROM teacherclass WHERE uclassname='$uclassname'";
   if($classname!="default"){
       if(mysqli_query($con, $sql)){
-      $dsuccessmsg = "Class deleted sucessfully";
+        mysqli_query($con,"DELETE FROM studentclass WHERE uclassname='$uclassname'");
+        mysqli_query($con,"DELETE FROM request WHERE uclassname='$uclassname'");
+        $dsuccessmsg = "Class deleted sucessfully";
     }
   }
 }

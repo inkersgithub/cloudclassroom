@@ -89,7 +89,7 @@ if (isset($_POST['enterclass'])){
             $sql = mysqli_query($con, "SELECT * FROM studentclass WHERE email='$email'");
             $row = mysqli_num_rows($sql);
             while ($row = mysqli_fetch_array($sql)){
-            echo "<option value='". $row['uclassname'] ."'>".$row['teachername']. "-" .$row['classname'] ."</option>" ;
+            echo "<option value='". $row['uclassname'] ."'>".$row['classname']. "-" .$row['teachername'] ."</option>" ;
             }
             ?>
             </select>
@@ -120,7 +120,7 @@ if (isset($_POST['enterclass'])){
             $sql = mysqli_query($con, "SELECT * From teacherclass");
             $row = mysqli_num_rows($sql);
             while ($row = mysqli_fetch_array($sql)){
-              echo "<option value='". $row['email'] ."|" . $row['classname'] . "'>".$row['teachername']. "-" .$row['classname'] ."</option>" ;
+              echo "<option value='". $row['email'] ."|" . $row['classname'] . "'>".$row['classname']. "-" .$row['teachername']. "|".$row['institute']. "</option>" ;
             }
             ?>
             </select>

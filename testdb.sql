@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2017 at 12:31 PM
+-- Generation Time: Apr 02, 2017 at 03:11 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -35,13 +35,6 @@ CREATE TABLE `request` (
   `classname` varchar(50) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `request`
---
-
-INSERT INTO `request` (`sn`, `name`, `email`, `institute`, `uclassname`, `classname`, `status`) VALUES
-(61, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', 'zade@gmail.com|DBMS', 'DBMS', 0);
 
 -- --------------------------------------------------------
 
@@ -77,18 +70,19 @@ CREATE TABLE `teacherclass` (
   `email` varchar(40) NOT NULL,
   `classname` varchar(40) NOT NULL,
   `uclassname` varchar(50) NOT NULL,
-  `teachername` varchar(20) NOT NULL
+  `teachername` varchar(20) NOT NULL,
+  `institute` varchar(70) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teacherclass`
 --
 
-INSERT INTO `teacherclass` (`sn`, `email`, `classname`, `uclassname`, `teachername`) VALUES
-(36, 'zade@gmail.com', 'TOC', 'zade@gmail.com|TOC', 'Zade'),
-(37, 'zade@gmail.com', 'DBMS', 'zade@gmail.com|DBMS', 'Zade'),
-(38, 'anoop@gmail.com', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
-(39, 'anoop@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop');
+INSERT INTO `teacherclass` (`sn`, `email`, `classname`, `uclassname`, `teachername`, `institute`) VALUES
+(36, 'zade@gmail.com', 'TOC', 'zade@gmail.com|TOC', 'Zade', 'JCET'),
+(38, 'anoop@gmail.com', 'DCS', 'anoop@gmail.com|DCS', 'Anoop', 'JCET'),
+(39, 'anoop@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop', 'JCET'),
+(40, 'zade@gmail.com', 'DBMS', 'zade@gmail.com|DBMS', 'Zade', 'JCET');
 
 -- --------------------------------------------------------
 
@@ -169,7 +163,7 @@ ALTER TABLE `studentclass`
 -- AUTO_INCREMENT for table `teacherclass`
 --
 ALTER TABLE `teacherclass`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `users`
 --
