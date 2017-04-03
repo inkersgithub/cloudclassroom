@@ -43,3 +43,19 @@ while ($row = mysqli_fetch_array($sql)){
     <!-- <input type="submit" name="reject" value="Reject" class="btn btn-primary" /> -->
   </div>
 <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+$result=mysqli_query($con,"SELECT * FROM notification");
+if ($row = mysqli_fetch_array($result)) {
+     $value['current_date']=$row['date'];
+     echo $value['current_date'];
+}

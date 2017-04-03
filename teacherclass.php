@@ -12,6 +12,16 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])=="" OR isset($
 $uclassname = $_SESSION['uclassname'];
 $classname = $_SESSION['classname'];
 //echo $uclassname;
+if (isset($_POST['notify'])){
+   $msg = $_POST["txtarea"];
+   if(mysqli_query($con, "INSERT INTO notification(uclassname,msg) VALUES('" . $uclassname . "', '" . $msg . "')")) {
+     $successmsg="notified";
+     header("Location: teacherclass.php");
+
+   }
+}
+
+
 
 ?>
 <!DOCTYPE html>
@@ -57,7 +67,16 @@ $classname = $_SESSION['classname'];
       <h3 align="center"><u>Student requests</u></h3>
 
       <?php
+
         $res = mysqli_query($con,"SELECT sn, name, email, institute FROM request WHERE uclassname='$uclassname' AND status='0'");
+
+          if(mysqli_num_rows($res) == 0) {
+             echo "<br></br>";
+             echo "<br></br>";
+             echo "<br></br>";
+             echo "<h3 align='center'>No</h3>";
+             echo "<h3 align='center'>Request</h3>";
+          }else{
 
         while ($row = mysqli_fetch_array($res)) {
           $sn = $row['sn'];
@@ -78,6 +97,7 @@ $classname = $_SESSION['classname'];
           }
 
         }
+      }
       ?>
 
     </div>
@@ -85,18 +105,36 @@ $classname = $_SESSION['classname'];
       <h3 align="center">Column 2</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+
     </div>
     <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
+      <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
       <h3 align="center"><u>Notifications</u></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <textarea style="resize: none; overflow-y:scroll;" name="txtarea" rows="5" cols="29" class="form-control" id="msgn"></textarea>
+      <p></p>
+      <input type="submit" name="notify" value="Notify" style="margin-left:91px;margin-top:5px;" class="btn btn-primary" onClick="return empty()"/>
+      <br></br>
+      <?php
+        $res = mysqli_query($con,"SELECT * FROM notification WHERE uclassname='$uclassname' ORDER BY sn DESC LIMIT 10");
+        while ($row = mysqli_fetch_array($res)) {
+          echo "<br>";
+          echo $row['msg'];
+          echo "<br><br>";
+          $value['current_date']=$row['date'];
+          echo $value['current_date'];
+          echo "<hr style = 'border-width:2px;'>";
+        }
+        ?>
+
     </div>
   </div>
 </div>
 
 <!-- Boothstrap three Sections Ended -->
 
+
 <script src="js/jquery-1.10.2.js"></script>
+<script src="js/jqueryext.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

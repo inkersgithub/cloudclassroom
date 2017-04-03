@@ -9,7 +9,7 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])=="" OR isset($
     header("Location: index.php");
   }
 }
-// echo $_SESSION['uclassname'];
+$uclassname=$_SESSION['uclassname'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,9 +60,18 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])=="" OR isset($
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
     <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
-      <h3 align="center">Column 3</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <h3 align="center">Notifications</h3>
+      <?php
+        $res = mysqli_query($con,"SELECT * FROM notification WHERE uclassname='$uclassname' ORDER BY sn DESC LIMIT 10");
+        while ($row = mysqli_fetch_array($res)) {
+          echo "<br>";
+          echo $row['msg'];
+          echo "<br><br>";
+          $value['current_date']=$row['date'];
+          echo $value['current_date'];
+          echo "<hr style = 'border-width:2px;'>";
+        }
+      ?>
     </div>
   </div>
 </div>

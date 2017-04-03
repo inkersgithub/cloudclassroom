@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2017 at 03:11 PM
+-- Generation Time: Apr 03, 2017 at 02:15 PM
 -- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,6 +23,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notification`
+--
+
+CREATE TABLE `notification` (
+  `sn` int(11) NOT NULL,
+  `uclassname` varchar(50) NOT NULL,
+  `msg` text NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `request`
 --
 
@@ -35,6 +48,15 @@ CREATE TABLE `request` (
   `classname` varchar(50) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`sn`, `name`, `email`, `institute`, `uclassname`, `classname`, `status`) VALUES
+(66, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', 'zade@gmail.com|TOC', 'TOC', 0),
+(65, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', 'zade@gmail.com|DBMS', 'DBMS', 0),
+(68, 'Ashi', 'ashi@gmail.com', 'MES', 'anoop@gmail.com|DCS', 'DCS', 0);
 
 -- --------------------------------------------------------
 
@@ -55,9 +77,9 @@ CREATE TABLE `studentclass` (
 --
 
 INSERT INTO `studentclass` (`sn`, `email`, `classname`, `uclassname`, `teachername`) VALUES
-(3, 'sree@gmail.com', 'TOC', 'zade@gmail.com|TOC', 'Zade'),
-(5, 'sree@gmail.com', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
-(6, 'sree@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop');
+(8, 'sree@gmail.com', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
+(9, 'sree@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop'),
+(10, 'ashi@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop');
 
 -- --------------------------------------------------------
 
@@ -114,6 +136,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `institute`, `password`, `type`) VAL
 --
 
 --
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`sn`);
+
+--
 -- Indexes for table `request`
 --
 ALTER TABLE `request`
@@ -150,15 +178,20 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+--
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT for table `studentclass`
 --
 ALTER TABLE `studentclass`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `teacherclass`
 --
