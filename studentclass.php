@@ -29,7 +29,7 @@ $uclassname=$_SESSION['uclassname'];
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM Student</a>
+			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM : <?php echo $_SESSION['classname']; ?></a>
 		</div>
 		<div class="collapse navbar-collapse" id="navbar1">
 			<ul class="nav navbar-nav navbar-right">
@@ -60,7 +60,7 @@ $uclassname=$_SESSION['uclassname'];
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
     <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
-      <h3 align="center">Notifications</h3>
+      <h3 align="center"><u>Notifications</u></h3>
       <?php
         $res = mysqli_query($con,"SELECT * FROM notification WHERE uclassname='$uclassname' ORDER BY sn DESC LIMIT 10");
         while ($row = mysqli_fetch_array($res)) {

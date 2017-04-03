@@ -8,6 +8,7 @@ if(isset($_SESSION['usr_id'])) {
 	unset($_SESSION['uclassname']);
 	unset($_SESSION['usr_email']);
 	unset($_SESSION['institute']);
+	unset($_SESSION['classname']);
 	header("Location: index.php");
 } else {
 	header("Location: index.php");

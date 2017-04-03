@@ -42,7 +42,7 @@ if (isset($_POST['notify'])){
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM Teacher</a>
+			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM : <?php echo $classname ?></a>
 		</div>
 		<div class="collapse navbar-collapse" id="navbar1">
 			<ul class="nav navbar-nav navbar-right">
@@ -64,7 +64,7 @@ if (isset($_POST['notify'])){
   <div class="row">
     <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
-      <h3 align="center"><u>Student requests</u></h3>
+      <h3 align="center"><u>Join requests</u></h3>
 
       <?php
 
@@ -75,7 +75,7 @@ if (isset($_POST['notify'])){
              echo "<br></br>";
              echo "<br></br>";
              echo "<h3 align='center'>No</h3>";
-             echo "<h3 align='center'>Request</h3>";
+             echo "<h3 align='center'>Requests</h3>";
           }else{
 
         while ($row = mysqli_fetch_array($res)) {
@@ -84,7 +84,7 @@ if (isset($_POST['notify'])){
           echo "Email     : ".$row['email']."<br>";
           echo "Institute : ".$row['institute']."<br><br>";
           echo '<input type="submit" name="accept'. $row['sn'] .'" value="Accept" class="btn btn-primary"/>  ';
-          echo '<input type="submit" name="delete'. $row['sn'] .'" value="Delete" class="btn btn-primary"/><br>';
+          echo '<input type="submit" name="delete'. $row['sn'] .'" value="Reject" class="btn btn-primary"/><br>';
 
           if(isset($_POST['delete'.$sn])){
             mysqli_query($con,"UPDATE request SET status='2' WHERE sn='$sn'");
@@ -107,9 +107,10 @@ if (isset($_POST['notify'])){
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
 
     </div>
+
     <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
-      <h3 align="center"><u>Notifications</u></h3>
+      <h3 align="center"><u>Notify all</u></h3>
       <textarea style="resize: none; overflow-y:scroll;" name="txtarea" rows="5" cols="29" class="form-control" id="msgn"></textarea>
       <p></p>
       <input type="submit" name="notify" value="Notify" style="margin-left:91px;margin-top:5px;" class="btn btn-primary" onClick="return empty()"/>

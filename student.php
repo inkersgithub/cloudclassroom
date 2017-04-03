@@ -35,6 +35,9 @@ if (isset($_POST['enterclass'])){
   $enterclass = $_POST['enterclass'];
   if($enterclass!="default"){
     $_SESSION[uclassname]=$enterclass;
+    $temp = explode('|',$enterclass);
+    $classname = end($temp);
+    $_SESSION[classname]=$classname;
     header("Location: studentclass.php");
   }
 }
@@ -146,14 +149,12 @@ while($row = mysqli_fetch_array($query))
   $status=$row['status'];
   if($status==1){
     $classname=$row['classname'];
-    $message="Your request for admission to classroom $classname is accepted by its teacher";
-    echo $message."<br>";
+    echo "<div  style='color:#008000'><center><br><p>Your request for admission to classroom $classname is accepted by its teacher</p></center></div>";
     mysqli_query($con,"DELETE FROM request where email='".$email."' AND status='1'");
   }
   elseif($status==2){
     $classname=$row['classname'];
-    $message="Your request for admission to classroom $classname is rejected by its teacher";
-    echo $message."<br>";
+    echo "<div  style='color:#ff0000'><center><br><p>Your request for admission to classroom $classname is rejected by its teacher</p></center></div>";
     mysqli_query($con,"DELETE FROM request where email='".$email."' AND status='2'");
   }
 }
