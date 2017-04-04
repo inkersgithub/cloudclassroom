@@ -161,6 +161,7 @@ while($row = mysqli_fetch_array($query))
 ?>
 
 <!--request response notification ended-->
+<div class="footer" style="position:absolute"><strong> <a href="https://www.inkers.in">Inkers</a> </strong>.</div>
 
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/bootstrap.min.js"></script>

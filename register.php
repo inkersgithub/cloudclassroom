@@ -137,11 +137,12 @@ if (isset($_POST['signup'])) {
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4 col-md-offset-4 text-center">
-		Already Registered? <a href="index.php">Login Here</a>
+		<div class="col-md-4 col-md-offset-4 text-center" style="padding-bottom:10px">
+		Already Registered? <a href="index.php">Login Here</a><br>
 		</div>
 	</div>
 </div>
+<div class="footer"><strong> <a href="https://www.inkers.in">inkers Inc.</a> </strong>.</div>
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>

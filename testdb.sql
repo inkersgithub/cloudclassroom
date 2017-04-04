@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 03, 2017 at 02:15 PM
+-- Generation Time: Apr 04, 2017 at 06:22 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -56,7 +56,8 @@ CREATE TABLE `request` (
 INSERT INTO `request` (`sn`, `name`, `email`, `institute`, `uclassname`, `classname`, `status`) VALUES
 (66, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', 'zade@gmail.com|TOC', 'TOC', 0),
 (65, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', 'zade@gmail.com|DBMS', 'DBMS', 0),
-(68, 'Ashi', 'ashi@gmail.com', 'MES', 'anoop@gmail.com|DCS', 'DCS', 0);
+(69, 'Ashi', 'ashi@gmail.com', 'MES', 'zade@gmail.com|TOC', 'TOC', 0),
+(70, 'Ashi', 'ashi@gmail.com', 'MES', 'zade@gmail.com|DBMS', 'DBMS', 0);
 
 -- --------------------------------------------------------
 
@@ -79,7 +80,8 @@ CREATE TABLE `studentclass` (
 INSERT INTO `studentclass` (`sn`, `email`, `classname`, `uclassname`, `teachername`) VALUES
 (8, 'sree@gmail.com', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
 (9, 'sree@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop'),
-(10, 'ashi@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop');
+(10, 'ashi@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop'),
+(11, 'ashi@gmail.com', 'DCS', 'anoop@gmail.com|DCS', 'Anoop');
 
 -- --------------------------------------------------------
 
@@ -186,12 +188,12 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT for table `studentclass`
 --
 ALTER TABLE `studentclass`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `teacherclass`
 --

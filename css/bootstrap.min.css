@@ -1672,6 +1672,7 @@ textarea.input-lg,select[multiple].input-lg {
 	right:15px
 }
 .btn {
+	min-width: 76px;
 	display:inline-block;
 	margin-bottom:0;
 	font-weight:400;
@@ -5055,4 +5056,42 @@ button.close {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+.btnext {
+	margin-top: 30px;
+	min-width: 287px;
+	display:inline-block;
+	margin-bottom:0;
+	margin-left: 133px;
+	font-weight:400;
+	text-align:center;
+	vertical-align:middle;
+	cursor:pointer;
+	background-image:none;
+	border:8px solid transparent;
+	white-space:nowrap;
+	padding:7px 88px;
+	font-size:21px;
+	line-height:1.42857143;
+	border-radius:40px;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none
+}
+.btnext-primary {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+.footer {
+	border: 1px solid transparent;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 12px;
+  background-color: #f8f8f8;
+	border-color: #e7e7e7;
+  text-align: center;
 }

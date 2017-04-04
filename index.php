@@ -99,7 +99,7 @@ if (isset($_POST['login'])) {
 		</div>
 	</div>
 </div>
-
+<div class="footer" style="position:absolute"><strong> <a href="https://www.inkers.in">inkers Inc.</a> </strong></div>
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>

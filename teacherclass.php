@@ -62,7 +62,7 @@ if (isset($_POST['notify'])){
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
+    <div class="col-sm-3" style="height :540px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
       <h3 align="center"><u>Join requests</u></h3>
 
@@ -103,12 +103,12 @@ if (isset($_POST['notify'])){
     </div>
     <div class="col-sm-6">
       <h3 align="center">Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-
+      <input type="submit" name="feedback" value="Feedback" class="btnext btnext-primary"/><br>
+      <input type="submit" name="forum" value="Forum" class="btnext btnext-primary"/><br>
+      <input type="submit" name="share" value="Share" class="btnext btnext-primary"/><br>
     </div>
 
-    <div class="col-sm-3" style="height :560px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
+    <div class="col-sm-3" style="height :540px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
       <h3 align="center"><u>Notify all</u></h3>
       <textarea style="resize: none; overflow-y:scroll;" name="txtarea" rows="5" cols="29" class="form-control" id="msgn"></textarea>
@@ -130,6 +130,8 @@ if (isset($_POST['notify'])){
     </div>
   </div>
 </div>
+
+<div class="footer"><strong> <a href="https://www.inkers.in">inkers Inc.</a> </strong></div>
 
 <!-- Boothstrap three Sections Ended -->
 
