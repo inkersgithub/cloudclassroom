@@ -10,6 +10,10 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])=="" OR isset($
   }
 }
 $uclassname=$_SESSION['uclassname'];
+
+if (isset($_POST['forum'])){
+  header("Location: forum.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,6 +77,7 @@ $uclassname=$_SESSION['uclassname'];
       ?>
     </div>
     <div class="col-sm-6">
+      <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
       <h3>Column 2</h3>
       <input type="submit" name="data" value="Study materials" class="btnext btnext-primary"/><br>
       <input type="submit" name="qbank" value="Question bank" class="btnext btnext-primary"/><br>

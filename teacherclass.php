@@ -21,7 +21,13 @@ if (isset($_POST['notify'])){
    }
 }
 
+if (isset($_POST['forum'])){
+  header("Location: forum.php");
+}
 
+if (isset($_POST['feedback'])){
+  header("Location: feedback.php");
+}
 
 ?>
 <!DOCTYPE html>
