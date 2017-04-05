@@ -1,7 +1,11 @@
 <?php
 session_start();
 include_once 'dbconnect.php';
-if(isset($_SESSION['usr_id'])==""&&!isset($_SESSION['uclassname'])){
+if(isset($_SESSION['usr_id'])==""){
+	header("Location: index.php");
+}
+
+if(!isset($_SESSION['uclassname'])){
 	header("Location: index.php");
 }
 

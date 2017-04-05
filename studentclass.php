@@ -45,7 +45,7 @@ $uclassname=$_SESSION['uclassname'];
 	</div>
 </nav>
 
-<!-- boothstrap three sections -->
+<!-- bootstrap three sections -->
 
 <div class="container">
   <div class="row">
@@ -53,21 +53,30 @@ $uclassname=$_SESSION['uclassname'];
       <h3 align="center"><u>Notifications</u></h3>
       <?php
         $res = mysqli_query($con,"SELECT * FROM notification WHERE uclassname='$uclassname' ORDER BY sn DESC LIMIT 10");
-        while ($row = mysqli_fetch_array($res)) {
-          echo "<br>";
-          echo $row['msg'];
-          echo "<br><br>";
-          $value['current_date']=$row['date'];
-          echo $value['current_date'];
-          echo "<hr style = 'border-width:2px;'>";
+        if(mysqli_num_rows($res) == 0) {
+          echo "<br></br>";
+          echo "<br></br>";
+          echo "<br></br>";
+          echo "<h3 align='center'>No</h3>";
+          echo "<h3 align='center'>Notifications</h3>";
+        }
+        else {
+          while ($row = mysqli_fetch_array($res)) {
+            echo "<br>";
+            echo $row['msg'];
+            echo "<br><br>";
+            $value['current_date']=$row['date'];
+            echo $value['current_date'];
+            echo "<hr style = 'border-width:2px;'>";
+          }
         }
       ?>
     </div>
     <div class="col-sm-6">
       <h3>Column 2</h3>
-      <input type="submit" name="what" value="what" class="btnext btnext-primary"/><br>
+      <input type="submit" name="data" value="Study materials" class="btnext btnext-primary"/><br>
+      <input type="submit" name="qbank" value="Question bank" class="btnext btnext-primary"/><br>
       <input type="submit" name="forum" value="Forum" class="btnext btnext-primary"/><br>
-      <input type="submit" name="share" value="Share" class="btnext btnext-primary"/><br>
     </div>
     <div class="col-sm-3" style="height :540px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
       <h3 align="center"><u>Feedback</u></h3>

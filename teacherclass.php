@@ -58,7 +58,7 @@ if (isset($_POST['notify'])){
 	</div>
 </nav>
 
-<!-- boothstrap three sections -->
+<!-- bootstrap three sections -->
 
 <div class="container">
   <div class="row">
@@ -69,43 +69,41 @@ if (isset($_POST['notify'])){
       <?php
 
         $res = mysqli_query($con,"SELECT sn, name, email, institute FROM request WHERE uclassname='$uclassname' AND status='0'");
-
-          if(mysqli_num_rows($res) == 0) {
-             echo "<br></br>";
-             echo "<br></br>";
-             echo "<br></br>";
-             echo "<h3 align='center'>No</h3>";
-             echo "<h3 align='center'>Requests</h3>";
-          }else{
-
-        while ($row = mysqli_fetch_array($res)) {
-          $sn = $row['sn'];
-          echo "Name      : ".$row['name']."<br>";
-          echo "Email     : ".$row['email']."<br>";
-          echo "Institute : ".$row['institute']."<br><br>";
-          echo '<input type="submit" name="accept'. $row['sn'] .'" value="Accept" class="btn btn-primary"/>  ';
-          echo '<input type="submit" name="delete'. $row['sn'] .'" value="Reject" class="btn btn-primary"/><br>';
-
-          if(isset($_POST['delete'.$sn])){
-            mysqli_query($con,"UPDATE request SET status='2' WHERE sn='$sn'");
-            header("Location: teacherclass.php");
-          }
-          if(isset($_POST['accept'.$sn])){
+        if(mysqli_num_rows($res) == 0) {
+          echo "<br></br>";
+          echo "<br></br>";
+          echo "<br></br>";
+          echo "<h3 align='center'>No</h3>";
+          echo "<h3 align='center'>Requests</h3>";
+        }
+        else {
+          while ($row = mysqli_fetch_array($res)) {
+            $sn = $row['sn'];
+            echo "Name      : ".$row['name']."<br>";
+            echo "Email     : ".$row['email']."<br>";
+            echo "Institute : ".$row['institute']."<br><br>";
+            echo '<input type="submit" name="accept'. $row['sn'] .'" value="Accept" class="btn btn-primary"/>  ';
+            echo '<input type="submit" name="delete'. $row['sn'] .'" value="Reject" class="btn btn-primary"/><br>';
+            if(isset($_POST['delete'.$sn])){
+              mysqli_query($con,"UPDATE request SET status='2' WHERE sn='$sn'");
+              header("Location: teacherclass.php");
+            }
+            if(isset($_POST['accept'.$sn])){
               mysqli_query($con,"UPDATE request SET status='1' WHERE sn='$sn'");
               mysqli_query($con,"INSERT INTO studentclass(email,classname,uclassname,teachername) VALUES('" . $row['email'] . "', '" . $classname . "', '" . $uclassname . "', '" . $_SESSION['usr_name'] . "')");
               header("Location: teacherclass.php");
+            }
           }
-
         }
-      }
       ?>
 
     </div>
     <div class="col-sm-6">
       <h3 align="center">Column 2</h3>
-      <input type="submit" name="feedback" value="Feedback" class="btnext btnext-primary"/><br>
+      <input type="submit" name="data" value="Study material" class="btnext btnext-primary"/><br>
+      <input type="submit" name="qbank" value="Question bank" class="btnext btnext-primary"/><br>
       <input type="submit" name="forum" value="Forum" class="btnext btnext-primary"/><br>
-      <input type="submit" name="share" value="Share" class="btnext btnext-primary"/><br>
+      <input type="submit" name="feedback" value="Feedback" class="btnext btnext-primary"/><br>
     </div>
 
     <div class="col-sm-3" style="height :540px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
@@ -117,15 +115,24 @@ if (isset($_POST['notify'])){
       <br></br>
       <?php
         $res = mysqli_query($con,"SELECT * FROM notification WHERE uclassname='$uclassname' ORDER BY sn DESC LIMIT 10");
-        while ($row = mysqli_fetch_array($res)) {
-          echo "<br>";
-          echo $row['msg'];
-          echo "<br><br>";
-          $value['current_date']=$row['date'];
-          echo $value['current_date'];
-          echo "<hr style = 'border-width:2px;'>";
+        if(mysqli_num_rows($res) == 0) {
+          echo "<br></br>";
+          echo "<br></br>";
+          echo "<br></br>";
+          echo "<h3 align='center'>No</h3>";
+          echo "<h3 align='center'>Notifications</h3>";
         }
-        ?>
+        else {
+          while ($row = mysqli_fetch_array($res)) {
+            echo "<br>";
+            echo $row['msg'];
+            echo "<br><br>";
+            $value['current_date']=$row['date'];
+            echo $value['current_date'];
+            echo "<hr style = 'border-width:2px;'>";
+          }
+        }
+      ?>
 
     </div>
   </div>

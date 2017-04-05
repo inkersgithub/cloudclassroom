@@ -49,10 +49,10 @@ else if (isset($_POST['delete'])){
   $uclassname = $email . '|' . $classname;
   $sql = "DELETE FROM teacherclass WHERE uclassname='$uclassname'";
   if($classname!="default"){
-      if(mysqli_query($con, $sql)){
-        mysqli_query($con,"DELETE FROM studentclass WHERE uclassname='$uclassname'");
-        mysqli_query($con,"DELETE FROM request WHERE uclassname='$uclassname'");
-        $dsuccessmsg = "Class deleted sucessfully";
+    if(mysqli_query($con, $sql)){
+      mysqli_query($con,"DELETE FROM studentclass WHERE uclassname='$uclassname'");
+      mysqli_query($con,"DELETE FROM request WHERE uclassname='$uclassname'");
+      $dsuccessmsg = "Class deleted sucessfully";
     }
   }
 }
@@ -109,7 +109,7 @@ else if (isset($_POST['delete'])){
             $sql = mysqli_query($con, "SELECT classname From teacherclass Where email='$email'");
             $row = mysqli_num_rows($sql);
             while ($row = mysqli_fetch_array($sql)){
-            echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
+              echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
             }
             ?>
             </select>
@@ -165,7 +165,7 @@ else if (isset($_POST['delete'])){
             $sql = mysqli_query($con, "SELECT classname From teacherclass Where email='$email'");
             $row = mysqli_num_rows($sql);
             while ($row = mysqli_fetch_array($sql)){
-            echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
+              echo "<option value='". $row['classname'] ."'>" .$row['classname'] ."</option>" ;
             }
             ?>
             </select>
