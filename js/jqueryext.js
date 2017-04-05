@@ -9,3 +9,11 @@ function empty() {
         return false;
     };
 }
+function empty1() {
+    var x;
+    x = document.getElementById("msgn1").value;
+    if (x == "") {
+        alert("Enter a Valid Message");
+        return false;
+    };
+}
