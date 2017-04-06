@@ -10,10 +10,22 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])=="" OR isset($
   }
 }
 $uclassname=$_SESSION['uclassname'];
+$sname=$_SESSION['usr_name'];
+$email=$_SESSION['usr_email'];
 
 if (isset($_POST['forum'])){
   header("Location: forum.php");
 }
+
+if (isset($_POST['send'])){           //send feedback
+  $msg=$_POST["txtarea"];
+  if(mysqli_query($con,"INSERT INTO feedback(uclassname,sname,email,feedback) VALUES('" . $uclassname . "', '" . $sname . "', '" . $email . "', '" . $msg . "')")){
+    $successmsg="Sent feedback";
+  } else {
+    $errormsg="You have already sent one feedback and teacher haven't seen it yet.";
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -89,6 +101,41 @@ if (isset($_POST['forum'])){
       <p></p>
       <input type="submit" name="send" value="Send" style="margin-left:91px;margin-top:5px;" class="btn btn-primary" onClick="return empty()"/>
       <br></br>
+      <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+      <?php
+        $res = mysqli_query($con,"SELECT * FROM feedback WHERE uclassname='$uclassname' AND email='$email'");
+        if(mysqli_num_rows($res) == 0) {
+          echo "<br></br>";
+          echo "<br></br>";
+          echo "<br></br>";
+          echo "<h3 align='center'>No</h3>";
+          echo "<h3 align='center'>Feedback</h3>";
+        }
+        else {
+          while ($row = mysqli_fetch_array($res)) {
+            echo "<br>";
+            echo "<hr style = 'border-width:2px;'>";
+            if( $row['status']== 0){
+              echo "Sent feedback:<br>";
+              echo $row['feedback'];
+            } elseif ($row['status']== 1) {
+              echo "Sent feedback:<br>";
+              echo $row['feedback'];
+              echo "<br><br>";
+              echo "Reply:";
+              $reply=$row['reply'];
+              echo "<br>";
+              echo "<div  style='color:#008000'>$reply</div>";
+              mysqli_query($con,"DELETE FROM feedback WHERE uclassname='$uclassname' AND email='$email'");
+            } else{
+              echo "<div  style='color:#ff0000'>Your sent feedback has been ignored by the teacher</div>";
+              mysqli_query($con,"DELETE FROM feedback WHERE uclassname='$uclassname' AND email='$email'");
+            }
+            echo "<br><br>";
+            echo "<hr style = 'border-width:2px;'>";
+          }
+        }
+       ?>
     </div>
 
 

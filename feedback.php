@@ -12,6 +12,7 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])==""){
 }
 
 $uclassname=$_SESSION['uclassname'];
+
 ?>
 
 <!DOCTYPE html>
@@ -57,9 +58,45 @@ $uclassname=$_SESSION['uclassname'];
 
 		</div>
 		<div class="col-sm-10" style="height :100%; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 536px;">
+      <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
       <h3 align="center"><u>Feedbacks</u></h3>
+      <?php
+        echo "<hr style = 'border-width:2px;'>";
+        $res = mysqli_query($con,"SELECT * FROM feedback WHERE uclassname='$uclassname' AND status='0'");
+        if(mysqli_num_rows($res) == 0) {
+          echo "<br></br>";
+          echo "<br></br>";
+          echo "<br></br>";
+          echo "<h3 align='center'>No</h3>";
+          echo "<h3 align='center'>Feedback</h3>";
+        }
+        else {
+          while ($row = mysqli_fetch_array($res)) {
+            $sn=$row['sn'];
+            echo $row['sname'].":<br>";
+            echo $row['feedback'].".";
+            echo '<textarea style="resize: none;  margin-top: 20px;" name="txtarea'. $row['sn'] .'" rows="1" cols="29" class="form-control" id="msgn"></textarea><br>';
+            echo '<input type="submit" name="reply'. $row['sn'] .'" value="Reply" class="btn btn-primary" style="height:35px; width:35px" onClick="return empty()"/>  ';
+            echo '<input type="submit" name="ignore'. $row['sn'] .'" value="Ignore" class="btn btn-primary" style="height:35px; width:35px"/>  ';
+            echo "<hr style = 'border-width:2px;'>";
+
+            if(isset($_POST['ignore'.$sn])){
+              mysqli_query($con,"UPDATE feedback SET status='2' WHERE sn='$sn'");
+              header("Location: feedback.php");
+            }
+
+            if(isset($_POST['reply'.$sn])){
+              $msg=$_POST['txtarea'.$sn];
+              mysqli_query($con,"UPDATE feedback SET reply='".$msg."',status='1' WHERE sn='".$sn."'");
+              header("Location: feedback.php");
+            }
+          }
+        }
+      ?>
+
 		</div>
-		<div class="col-sm-1" >
+
+    <div class="col-sm-1" >
 
 		</div>
 	</div>
