@@ -9,7 +9,7 @@ if(!isset($_SESSION['uclassname'])){
 	header("Location: index.php");
 }
 
-$threadid=mysql_real_escape_string($_GET['link']);
+$threadid=mysqli_real_escape_string($con,$_GET['link']);
 if($threadid==""){
 header("Location:index.php");
 }
