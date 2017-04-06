@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 05, 2017 at 06:15 PM
+-- Generation Time: Apr 06, 2017 at 02:47 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -23,13 +23,36 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `sn` int(11) NOT NULL,
+  `uclassname` varchar(70) NOT NULL,
+  `sname` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `feedback` text NOT NULL,
+  `reply` text NOT NULL,
+  `status` int(1) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`sn`, `uclassname`, `sname`, `email`, `feedback`, `reply`, `status`) VALUES
+(10, 'anoop@gmail.com|DCS', 'Navaneetha', 'sree@gmail.com', 'zdfvdfvsdfvds', 'sdfvdfsv', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `foruma`
 --
 
 CREATE TABLE `foruma` (
   `sn` int(11) NOT NULL,
-  `uclassname` varchar(50) NOT NULL,
-  `threadn` int(11) NOT NULL,
+  `threadid` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `answer` text NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -48,17 +71,6 @@ CREATE TABLE `forumq` (
   `date` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `forumq`
---
-
-INSERT INTO `forumq` (`threadn`, `name`, `uclassname`, `thread`, `date`) VALUES
-(2, 'Zade', 'zade@gmail.com|TOC', 'sdcsdcsdc', '2017-04-04 22:40:11'),
-(3, 'Ashi', 'anoop@gmail.com|DCS', 'edwedwed', '2017-04-04 22:42:47'),
-(4, 'Ashi', 'anoop@gmail.com|DCS', 'edwedwed', '2017-04-04 22:45:23'),
-(5, 'Ashi', 'anoop@gmail.com|DCS', 'sdavcsdvcsdfv', '2017-04-04 22:51:27'),
-(6, 'Ashi', 'anoop@gmail.com|DCS', 'saxsaxsa', '2017-04-04 22:58:05');
-
 -- --------------------------------------------------------
 
 --
@@ -71,13 +83,6 @@ CREATE TABLE `notification` (
   `msg` text NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
-
---
--- Dumping data for table `notification`
---
-
-INSERT INTO `notification` (`sn`, `uclassname`, `msg`, `date`) VALUES
-(96, 'zade@gmail.com|TOC', 'dfsdafsda', '2017-04-04 22:01:21');
 
 -- --------------------------------------------------------
 
@@ -184,6 +189,13 @@ INSERT INTO `users` (`id`, `name`, `email`, `institute`, `password`, `type`) VAL
 --
 
 --
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`uclassname`,`email`),
+  ADD UNIQUE KEY `sn` (`sn`);
+
+--
 -- Indexes for table `foruma`
 --
 ALTER TABLE `foruma`
@@ -238,15 +250,20 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
 -- AUTO_INCREMENT for table `foruma`
 --
 ALTER TABLE `foruma`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `forumq`
 --
 ALTER TABLE `forumq`
-  MODIFY `threadn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `threadn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `notification`
 --

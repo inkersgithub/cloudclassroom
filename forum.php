@@ -10,8 +10,8 @@ if(!isset($_SESSION['uclassname'])){
 }
 
 $uclassname=$_SESSION['uclassname'];
-$name=$_SESSION['usr_name'];
 
+$name = $_SESSION['usr_name'] . '|' . $_SESSION['usr_type'];
 if (isset($_POST['post'])){
    $thread = $_POST["txtarea"];
    if(mysqli_query($con, "INSERT INTO forumq(name,uclassname,thread) VALUES('" . $name . "','" . $uclassname . "', '" . $thread . "')")) {
@@ -65,10 +65,10 @@ if (isset($_POST['post'])){
   <div class="row">
 		<div class="col-sm-1">
 		</div>
-		<div class="col-sm-10" style=".overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 300px;">
+		<div class="col-sm-10" style=".overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 200px;">
 
 			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="forumq">
-			<textarea name="txtarea" rows="10" cols="29" class="form-control" id="msgn" style="resize: none; margin-top:15px; overflow-y:scroll;" ></textarea>
+			<textarea name="txtarea" rows="5" cols="29" class="form-control" id="msgn" style="resize: none; margin-top:15px; overflow-y:scroll;" ></textarea>
       <p></p>
       <input type="submit" name="post" value="Post" style="margin: auto; margin-bottom:10px; display: block;padding: 7px 89px;border-radius: 28px;" class="btn btn-primary" onClick="return empty()"/>
 
@@ -77,8 +77,8 @@ if (isset($_POST['post'])){
 		</div>
 	</div>
 </div>
-<div class="container ">
-  <div class="row">
+<div class="container " style="margin-bottom: 40px;">
+  <div class="row" style="margin-bottom:20px">
 		<div class="col-sm-1">
 		</div>
 		<div class="col-sm-10" style="margin-top:10px; height :100%; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 536px;">
@@ -87,18 +87,19 @@ if (isset($_POST['post'])){
         while ($row = mysqli_fetch_array($res)) {
 					$threadn = $row['threadn'];
           echo "<br>";
-          echo $row['thread'];
+      		echo '<strong>'.$row['thread'].'</strong>';
           echo "<br><br>";
           $value['current_date']=$row['date'];
           echo $value['current_date'];
-					echo '<input type="submit" name="replay'. $row['threadn'] .'" value="Replay" class="btn btn-primary"/ style="float:right">  ';
+					echo "        #Posted by ".$row['name'];
+					$id=$row['threadn'];
+					$result = mysqli_query($con,"SELECT * FROM foruma WHERE threadid='$id'");
+					$num_rows = mysqli_num_rows($result);
+					echo '<a style="float:right" href="forumreplay.php?link=' . $id . '">Replies#'.$num_rows.'</a>';
           echo "<hr style = 'border-width:2px;'>";
-
 					if(isset($_POST['replay'.$threadn])){
-
             header("Location: forum.php");
           }
-
         }
       ?>
 		</div>
@@ -107,7 +108,7 @@ if (isset($_POST['post'])){
 	</div>
 </div>
 
-<div class="footer" style="position:inherit"><strong> <a href="https://www.inkers.in">inkers Inc.</a> </strong></div>
+<div class="footer"><strong> <a href="https://www.inkers.in">inkers Inc.</a> </strong></div>
 
 <script src="js/jqueryext.js"></script>
 <script src="js/jquery-1.10.2.js"></script>

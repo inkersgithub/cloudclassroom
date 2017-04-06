@@ -109,7 +109,19 @@ if (isset($_POST['feedback'])){
       <input type="submit" name="data" value="Study material" class="btnext btnext-primary"/><br>
       <input type="submit" name="qbank" value="Question bank" class="btnext btnext-primary"/><br>
       <input type="submit" name="forum" value="Forum" class="btnext btnext-primary"/><br>
-      <input type="submit" name="feedback" value="Feedback" class="btnext btnext-primary"/><br>
+
+      <?php
+          $res = mysqli_query($con,"SELECT * FROM feedback WHERE uclassname='$uclassname' AND status='0'");
+          if(mysqli_num_rows($res) == 0) {
+              echo '<input type="submit" name="feedback" value="Feedback" class="btnext btnext-primary" /><br>';
+          }else{
+              echo '<input type="submit" name="feedback" value="Feedback" class="btnext btnext-primary" style="background-color: #19c507b3;border-color: #36ad2a;" /><br>';
+          }
+
+
+
+      ?>
+
     </div>
 
     <div class="col-sm-3" style="height :540px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
