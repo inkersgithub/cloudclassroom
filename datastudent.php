@@ -1,8 +1,13 @@
 <?php
 session_start();
 
-if(isset($_SESSION['usr_id'])==""&&!isset($_SESSION['uclassname'])){
-	header("Location: index.php");
+if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
+  if($_SESSION['usr_type']=="teacher"){
+    header("Location: teacher.php");
+  }
+  else {
+    header("Location: index.php");
+  }
 }
 
 include_once 'dbconnect.php';
@@ -11,7 +16,7 @@ include_once 'dbconnect.php';
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Empty | VIRTUAL CLASSROOM</title>
+	<title>Study materials | VIRTUAL CLASSROOM</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" >
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>
@@ -27,7 +32,7 @@ include_once 'dbconnect.php';
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM</a>
+			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM : <?php echo $_SESSION['classname'] ?></a>
 		</div>
 		<!-- menu items -->
 		<div class="collapse navbar-collapse" id="navbar1">
@@ -51,7 +56,8 @@ include_once 'dbconnect.php';
 
 		</div>
 		<div class="col-sm-10" style="height :100%; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 536px;">
-
+      <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
+      <h3 align="center"><u>Study materials</u></h3>
 		</div>
 		<div class="col-sm-1" >
 

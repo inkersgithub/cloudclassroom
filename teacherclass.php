@@ -11,6 +11,7 @@ if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])=="" OR isset($
 }
 $uclassname = $_SESSION['uclassname'];
 $classname = $_SESSION['classname'];
+
 //echo $uclassname;
 if (isset($_POST['notify'])){
    $msg = $_POST["txtarea"];
@@ -19,6 +20,14 @@ if (isset($_POST['notify'])){
      header("Location: teacherclass.php");
 
    }
+}
+
+if (isset($_POST['data'])){
+  header("Location: datateacher.php");
+}
+
+if (isset($_POST['qbank'])){
+  header("Location: qbankteacher.php");
 }
 
 if (isset($_POST['forum'])){
@@ -48,7 +57,7 @@ if (isset($_POST['feedback'])){
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM : <?php echo $classname ?></a>
+			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM : <?php echo $_SESSION['classname'] ?></a>
 		</div>
 		<div class="collapse navbar-collapse" id="navbar1">
 			<ul class="nav navbar-nav navbar-right">
@@ -105,7 +114,7 @@ if (isset($_POST['feedback'])){
 
     </div>
     <div class="col-sm-6">
-      <h3 align="center">Column 2</h3>
+      <h3 align="center"><u><?php echo $_SESSION['classname']; ?></u></h3>
       <input type="submit" name="data" value="Study material" class="btnext btnext-primary"/><br>
       <input type="submit" name="qbank" value="Question bank" class="btnext btnext-primary"/><br>
       <input type="submit" name="forum" value="Forum" class="btnext btnext-primary"/><br>
@@ -117,9 +126,6 @@ if (isset($_POST['feedback'])){
           }else{
               echo '<input type="submit" name="feedback" value="Feedback" class="btnext btnext-primary" style="background-color: #19c507b3;border-color: #36ad2a;" /><br>';
           }
-
-
-
       ?>
 
     </div>

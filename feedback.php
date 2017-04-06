@@ -18,7 +18,7 @@ $uclassname=$_SESSION['uclassname'];
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Forum | VIRTUAL CLASSROOM</title>
+	<title>Feedback | VIRTUAL CLASSROOM</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" >
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>
@@ -34,7 +34,7 @@ $uclassname=$_SESSION['uclassname'];
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM</a>
+			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM : <?php echo $_SESSION['classname']; ?></a></a>
 		</div>
 		<!-- menu items -->
 		<div class="collapse navbar-collapse" id="navbar1">

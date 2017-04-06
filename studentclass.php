@@ -13,6 +13,14 @@ $uclassname=$_SESSION['uclassname'];
 $sname=$_SESSION['usr_name'];
 $email=$_SESSION['usr_email'];
 
+if (isset($_POST['data'])){
+  header("Location: datastudent.php");
+}
+
+if (isset($_POST['qbank'])){
+  header("Location: qbankstudent.php");
+}
+
 if (isset($_POST['forum'])){
   header("Location: forum.php");
 }
@@ -90,7 +98,7 @@ if (isset($_POST['send'])){           //send feedback
     </div>
     <div class="col-sm-6">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
-      <h3>Column 2</h3>
+      <h3 align="center"><u><?php echo $_SESSION['classname']; ?></u></h3>
       <input type="submit" name="data" value="Study materials" class="btnext btnext-primary"/><br>
       <input type="submit" name="qbank" value="Question bank" class="btnext btnext-primary"/><br>
       <input type="submit" name="forum" value="Forum" class="btnext btnext-primary"/><br>
