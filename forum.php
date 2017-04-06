@@ -95,7 +95,7 @@ if (isset($_POST['post'])){
 					$id=$row['threadn'];
 					$result = mysqli_query($con,"SELECT * FROM foruma WHERE threadid='$id'");
 					$num_rows = mysqli_num_rows($result);
-					echo '<a style="float:right" href="forumreplay.php?link=' . $id . '">Replies#'.$num_rows.'</a>';
+					echo '<a style="float:right" href="forumreplay.php?link=' . $id . '">Reply #'.$num_rows.'</a>';
           echo "<hr style = 'border-width:2px;'>";
 					if(isset($_POST['replay'.$threadn])){
             header("Location: forum.php");
