@@ -14,7 +14,12 @@ if(!isset($_SESSION['uclassname'])){
 	header("Location: index.php");
 }
 
-$classname=$_SESSION['classname'];
+$uclassname=$_SESSION['uclassname'];
+if(isset($_POST['post'])){
+  $question=$_POST['txtarea'];
+  mysqli_query($con,"INSERT INTO qbank(uclassname,question) VALUES('" . $uclassname ."', '" . $question ."') ");
+  header("Location: qbankteacher.php");
+}
 
 ?>
 
@@ -63,6 +68,26 @@ $classname=$_SESSION['classname'];
 		<div class="col-sm-10" style="height :100%; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 536px;">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
       <h3 align="center"><u>Question bank</u></h3>
+      <textarea name="txtarea" rows="2" cols="29" class="form-control" id="msgn" style="resize: none; margin-top:15px; overflow-y:scroll;" ></textarea>
+      <p></p>
+      <input type="submit" name="post" value="Update" class="btn btn-primary" style="margin: auto; margin-bottom:10px; display: block;padding: 7px 89px;" onClick="return empty()"/>
+
+      <?php
+        echo "<hr style = 'border-width:2px;'>";
+        $res = mysqli_query($con,"SELECT * FROM qbank WHERE uclassname='$uclassname'");
+        if(mysqli_num_rows($res) == 0) {
+          echo "<br></br>";
+          echo "<br></br>";
+          echo "<h3 align='center'>No</h3>";
+          echo "<h3 align='center'>Questions</h3>";
+        }
+        else {
+          while ($row = mysqli_fetch_array($res)) {
+            echo "<br># ".$row['question']."<br>";
+          }
+        }
+      ?>
+
 		</div>
 		<div class="col-sm-1" >
 
@@ -75,5 +100,6 @@ $classname=$_SESSION['classname'];
 <div class="footer" style="position:absolute"><strong> <a href="https://www.inkers.in">inkers Inc.</a> </strong></div>
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jqueryext.js"></script>
 </body>
 </html>
