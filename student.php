@@ -31,7 +31,7 @@ if(isset($_POST['request'])){
     }
   }
 }
-if (isset($_POST['enterclass'])){
+if (isset($_POST['enter'])){
   $enterclass = $_POST['enterclass'];
   if($enterclass!="default"){
     $_SESSION[uclassname]=$enterclass;

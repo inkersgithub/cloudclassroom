@@ -68,7 +68,7 @@ if (isset($_POST['replay'])){
   <div class="row">
 		<div class="col-sm-1">
 		</div>
-		<div class="col-sm-10" style=".overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 200px;">
+		<div class="col-sm-10" style=".overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 130px;">
 
 			<?php
         $res = mysqli_query($con,"SELECT thread FROM forumq WHERE threadn='$threadid'");
@@ -94,7 +94,10 @@ if (isset($_POST['replay'])){
 				<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="forumq">
 				<div>
 
-
+					<textarea name="txtarea" rows="3" cols="29" class="form-control" id="msgn" style="resize: none; margin-top:15px; overflow-y:scroll;" ></textarea>
+					<p></p>
+					<input type="submit" name="replay" value="Replay" style="margin: auto; margin-bottom:10px; display: block;padding: 7px 89px;border-radius: 28px;" class="btn btn-primary" onClick="return empty()"/>
+					<input name="id" type="hidden" value="<?php echo htmlspecialchars($_GET['link'], ENT_QUOTES); ?>">
 					<?php
 		        $res = mysqli_query($con,"SELECT * FROM foruma WHERE threadid='$threadid' ORDER BY sn DESC");
 		        if(mysqli_num_rows($res) == 0) {
@@ -116,10 +119,7 @@ if (isset($_POST['replay'])){
 		        }
 		      ?>
 
-					<textarea name="txtarea" rows="5" cols="29" class="form-control" id="msgn" style="resize: none; margin-top:15px; overflow-y:scroll;" ></textarea>
-					<p></p>
-					<input type="submit" name="replay" value="Replay" style="margin: auto; margin-bottom:10px; display: block;padding: 7px 89px;border-radius: 28px;" class="btn btn-primary" onClick="return empty()"/>
-					<input name="id" type="hidden" value="<?php echo htmlspecialchars($_GET['link'], ENT_QUOTES); ?>">
+
 				</div>
 		</div>
 		<div class="col-sm-1" >

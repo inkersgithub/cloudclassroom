@@ -85,9 +85,7 @@ if (isset($_POST['feedback'])){
 
         $res = mysqli_query($con,"SELECT sn, name, email, institute FROM request WHERE uclassname='$uclassname' AND status='0'");
         if(mysqli_num_rows($res) == 0) {
-          echo "<br></br>";
-          echo "<br></br>";
-          echo "<br></br>";
+          echo "<br><br><br><br><br><br><br><br><br><br><br><br>";
           echo "<h3 align='center'>No</h3>";
           echo "<h3 align='center'>Requests</h3>";
         }
@@ -140,8 +138,6 @@ if (isset($_POST['feedback'])){
       <?php
         $res = mysqli_query($con,"SELECT * FROM notification WHERE uclassname='$uclassname' ORDER BY sn DESC LIMIT 10");
         if(mysqli_num_rows($res) == 0) {
-          echo "<br></br>";
-          echo "<br></br>";
           echo "<br></br>";
           echo "<h3 align='center'>No</h3>";
           echo "<h3 align='center'>Notifications</h3>";

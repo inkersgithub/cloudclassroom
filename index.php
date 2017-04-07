@@ -5,7 +5,10 @@ if(isset($_SESSION['usr_id'])!=""){
 	if($_SESSION['usr_type']=="student"){
 		header("Location: student.php");
 	}
-	else{
+	elseif ($_SESSION['usr_type']=="admin") {
+		header("Location: admin.php");
+	}
+	else {
 		header("Location: teacher.php");
 	}
 }
@@ -28,10 +31,13 @@ if (isset($_POST['login'])) {
 		if($_SESSION['usr_type']=="student"){
     	header('Location: student.php');
     }
-		else {
+		else if($_SESSION['usr_type']=="teacher") {
 			header('Location: teacher.php');
+		}else if ($_SESSION['usr_type']=="admin") {
+			header('Location: admin.php');
 		}
-	} else {
+
+	}else{
 		$errormsg = "Incorrect Email or Password!!!";
 	}
 }
