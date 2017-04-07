@@ -13,12 +13,13 @@ $threadid=mysqli_real_escape_string($con,$_GET['link']);
 if($threadid==""){
 header("Location:index.php");
 }
-
+$email=$_SESSION['usr_email'];
+$uclassname = $_SESSION['uclassname'];
 $name = $_SESSION['usr_name'] . '|' . $_SESSION['usr_type'];
 if (isset($_POST['replay'])){
    $answer = $_POST["txtarea"];
 	 $threadid = $_POST["id"];
-   if(mysqli_query($con, "INSERT INTO foruma(threadid,name,answer) VALUES('" . $threadid . "','" . $name . "','" . $answer . "')")) {
+   if(mysqli_query($con, "INSERT INTO foruma(threadid,name,email,uclassname,answer) VALUES('" . $threadid . "','" . $name . "','" . $email . "','" . $uclassname . "','" . $answer . "')")) {
 		 header("Location: forumreplay.php?link=$threadid");
    }
 }
@@ -91,7 +92,7 @@ if (isset($_POST['replay'])){
 		<div class="col-sm-1">
 		</div>
 		<div class="col-sm-10" style="margin-top:10px; height :100%; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 208px;">
-				<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="forumq">
+				<form role="form" action=<?php echo "/cloudclassroom/forumreplay.php?link=$threadid" ?> method="post" name="forumq">
 				<div>
 
 					<textarea name="txtarea" rows="3" cols="29" class="form-control" id="msgn" style="resize: none; margin-top:15px; overflow-y:scroll;" ></textarea>
@@ -108,12 +109,29 @@ if (isset($_POST['replay'])){
 		        }
 		        else {
 		          while ($row = mysqli_fetch_array($res)) {
+								$sn=$row['sn'];
 		            echo "<br>";
 		            echo $row['answer'];
 		            echo "<br><br>";
 		            $value['current_date']=$row['date'];
 		            echo $value['current_date'];
 								echo "         #Replied by ".$row['name'];
+								if($_SESSION['usr_type']=="admin"){
+									echo "<br>";
+									echo '<input style="float:right; color: #cf0808; background-color: #f8f8f8; border-color: #f8f8f8;" type="submit" name="delete'. $row['sn'] .'" value="Remove" class="btn btn-primary"/><br>';
+									if(isset($_POST['delete'.$sn])){
+										mysqli_query($con,"DELETE FROM foruma WHERE sn='$sn'");
+										header("Location: forumreplay.php?link=$threadid");
+									}
+								}
+								if($_SESSION['usr_email']==$row['email']){
+									echo "<br>";
+									echo '<input style="float:right;color: #cf0808; background-color: #f8f8f8; border-color: #f8f8f8;" type="submit" name="delete'. $row['sn'] .'" value="Remove" class="btn btn-primary"/><br>';
+									if(isset($_POST['delete'.$sn])){
+										mysqli_query($con,"DELETE FROM foruma WHERE sn='$sn'");
+										header("Location: forumreplay.php?link=$threadid");
+									}
+								}
 		            echo "<hr style = 'border-width:2px;'>";
 		          }
 		        }

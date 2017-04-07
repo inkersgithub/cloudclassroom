@@ -10,11 +10,12 @@ if(!isset($_SESSION['uclassname'])){
 }
 
 $uclassname=$_SESSION['uclassname'];
+$email = $_SESSION['usr_email'];
 
 $name = $_SESSION['usr_name'] . '|' . $_SESSION['usr_type'];
 if (isset($_POST['post'])){
    $thread = $_POST["txtarea"];
-   if(mysqli_query($con, "INSERT INTO forumq(name,uclassname,thread) VALUES('" . $name . "','" . $uclassname . "', '" . $thread . "')")) {
+   if(mysqli_query($con, "INSERT INTO forumq(name,email,uclassname,thread) VALUES('" . $name . "','" . $email . "','" . $uclassname . "', '" . $thread . "')")) {
 		 header("Location: forum.php");
    }
 }
@@ -96,10 +97,26 @@ if (isset($_POST['post'])){
 					$result = mysqli_query($con,"SELECT * FROM foruma WHERE threadid='$id'");
 					$num_rows = mysqli_num_rows($result);
 					echo '<a style="float:right" href="forumreplay.php?link=' . $id . '">Reply #'.$num_rows.'</a>';
-          echo "<hr style = 'border-width:2px;'>";
-					if(isset($_POST['replay'.$threadn])){
-            header("Location: forum.php");
-          }
+					if($_SESSION['usr_type']=="admin"){
+						echo "<br>";
+						echo '<input style="float:right; margin-right: -9px;color: #cf0808; background-color: #f8f8f8; border-color: #f8f8f8;" type="submit" name="delete'. $row['threadn'] .'" value="Remove" class="btn btn-primary"/><br>';
+						if(isset($_POST['delete'.$threadn])){
+							mysqli_query($con,"DELETE FROM forumq WHERE threadn='$threadn'");
+							header("Location: forum.php");
+						}
+					}
+					if($_SESSION['usr_email']==$row['email']){
+						echo "<br>";
+						echo '<input style="float:right; margin-right: -9px;color: #cf0808; background-color: #f8f8f8; border-color: #f8f8f8;" type="submit" name="delete'. $row['threadn'] .'" value="Remove" class="btn btn-primary"/><br>';
+						if(isset($_POST['delete'.$threadn])){
+							mysqli_query($con,"DELETE FROM forumq WHERE threadn='$threadn'");
+							header("Location: forum.php");
+						}
+					}
+					echo "<hr style = 'border-width:2px;'>";
+					//if(isset($_POST['replay'.$threadn])){
+          //  header("Location: forum.php");
+        //  }
         }
       ?>
 		</div>
