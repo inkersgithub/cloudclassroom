@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 06, 2017 at 02:47 PM
+-- Generation Time: Apr 07, 2017 at 09:09 PM
 -- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,6 +23,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `data`
+--
+
+CREATE TABLE `data` (
+  `sn` int(11) NOT NULL,
+  `uclassname` varchar(70) NOT NULL,
+  `filename` varchar(50) NOT NULL,
+  `path` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data`
+--
+
+INSERT INTO `data` (`sn`, `uclassname`, `filename`, `path`) VALUES
+(1, 'zade@gmail.com|TOC', 'jack', 'uploads/zade@gmail.com|TOC/jack58e7dd1e4ff535.78023850.jpeg'),
+(2, 'zade@gmail.com|TOC', 'scholar', 'uploads/zade@gmail.com|TOC/scholar58e7e2b5507412.96809652.pdf'),
+(3, 'zade@gmail.com|TOC', 'scholar', 'uploads/zade@gmail.com|TOC/scholar58e7e2d7e5ff81.31703067.ppt');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `feedback`
 --
 
@@ -36,13 +58,6 @@ CREATE TABLE `feedback` (
   `status` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `feedback`
---
-
-INSERT INTO `feedback` (`sn`, `uclassname`, `sname`, `email`, `feedback`, `reply`, `status`) VALUES
-(10, 'anoop@gmail.com|DCS', 'Navaneetha', 'sree@gmail.com', 'zdfvdfvsdfvds', 'sdfvdfsv', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -52,6 +67,8 @@ INSERT INTO `feedback` (`sn`, `uclassname`, `sname`, `email`, `feedback`, `reply
 CREATE TABLE `foruma` (
   `sn` int(11) NOT NULL,
   `threadid` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `uclassname` varchar(70) NOT NULL,
   `name` varchar(50) NOT NULL,
   `answer` text NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -66,6 +83,7 @@ CREATE TABLE `foruma` (
 CREATE TABLE `forumq` (
   `threadn` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `uclassname` varchar(60) NOT NULL,
   `thread` text NOT NULL,
   `date` datetime DEFAULT CURRENT_TIMESTAMP
@@ -83,6 +101,26 @@ CREATE TABLE `notification` (
   `msg` text NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qbank`
+--
+
+CREATE TABLE `qbank` (
+  `sn` int(11) NOT NULL,
+  `uclassname` varchar(70) NOT NULL,
+  `question` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `qbank`
+--
+
+INSERT INTO `qbank` (`sn`, `uclassname`, `question`) VALUES
+(10, 'zade@gmail.com|TOC', 'What is a computer?'),
+(11, 'zade@gmail.com|TOC', 'What is a CPU?');
 
 -- --------------------------------------------------------
 
@@ -105,9 +143,7 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`sn`, `name`, `email`, `institute`, `uclassname`, `classname`, `status`) VALUES
-(66, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', 'zade@gmail.com|TOC', 'TOC', 0),
 (65, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', 'zade@gmail.com|DBMS', 'DBMS', 0),
-(69, 'Ashi', 'ashi@gmail.com', 'MES', 'zade@gmail.com|TOC', 'TOC', 0),
 (70, 'Ashi', 'ashi@gmail.com', 'MES', 'zade@gmail.com|DBMS', 'DBMS', 0);
 
 -- --------------------------------------------------------
@@ -132,7 +168,9 @@ INSERT INTO `studentclass` (`sn`, `email`, `classname`, `uclassname`, `teacherna
 (8, 'sree@gmail.com', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
 (9, 'sree@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop'),
 (10, 'ashi@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop'),
-(11, 'ashi@gmail.com', 'DCS', 'anoop@gmail.com|DCS', 'Anoop');
+(11, 'ashi@gmail.com', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
+(14, 'sree@gmail.com', 'TOC', 'zade@gmail.com|TOC', 'Zade'),
+(15, 'ashi@gmail.com', 'TOC', 'zade@gmail.com|TOC', 'Zade');
 
 -- --------------------------------------------------------
 
@@ -189,6 +227,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `institute`, `password`, `type`) VAL
 --
 
 --
+-- Indexes for table `data`
+--
+ALTER TABLE `data`
+  ADD PRIMARY KEY (`sn`);
+
+--
 -- Indexes for table `feedback`
 --
 ALTER TABLE `feedback`
@@ -211,6 +255,12 @@ ALTER TABLE `forumq`
 -- Indexes for table `notification`
 --
 ALTER TABLE `notification`
+  ADD PRIMARY KEY (`sn`);
+
+--
+-- Indexes for table `qbank`
+--
+ALTER TABLE `qbank`
   ADD PRIMARY KEY (`sn`);
 
 --
@@ -250,6 +300,11 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `data`
+--
+ALTER TABLE `data`
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
@@ -258,27 +313,32 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `foruma`
 --
 ALTER TABLE `foruma`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `forumq`
 --
 ALTER TABLE `forumq`
-  MODIFY `threadn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `threadn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
   MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 --
+-- AUTO_INCREMENT for table `qbank`
+--
+ALTER TABLE `qbank`
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- AUTO_INCREMENT for table `studentclass`
 --
 ALTER TABLE `studentclass`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `teacherclass`
 --

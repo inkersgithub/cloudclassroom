@@ -1,7 +1,6 @@
 <?php
 session_start();
-
-if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
+include_once 'dbconnect.php';if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
   if($_SESSION['usr_type']=="teacher"){
     header("Location: teacher.php");
   }
@@ -10,7 +9,8 @@ if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
   }
 }
 
-include_once 'dbconnect.php';
+$uclassname = $_SESSION['uclassname'];
+
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +58,25 @@ include_once 'dbconnect.php';
 		<div class="col-sm-10" style="height :100%; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 536px;">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
       <h3 align="center"><u>Study materials</u></h3>
+
+      <?php
+      echo "<hr style = 'border-width:2px;'>";
+      $res = mysqli_query($con,"SELECT * FROM data WHERE uclassname='$uclassname'");
+      if(mysqli_num_rows($res) == 0) {
+        echo "<br></br>";
+        echo "<br></br>";
+        echo "<h3 align='center'>No</h3>";
+        echo "<h3 align='center'>Data</h3>";
+      }
+      else {
+        while ($row = mysqli_fetch_array($res)) {
+          echo "<br>".$row['filename'];
+          echo ""?><a href="<?php echo $row['path']; ?>">Download</a> <?php echo "<br>";
+        }
+      }
+
+      ?>
+
 		</div>
 		<div class="col-sm-1" >
 

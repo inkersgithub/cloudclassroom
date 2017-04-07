@@ -86,8 +86,6 @@ include_once 'dbconnect.php';
 
 
 <div class="footer" style="text-align:center;">
-  <!-- <div class="col-sm-1"> -->
-  <!-- </div> -->
   <div class="col-sm-5">
     <input type="text" name="classname" value="" placeholder="Class name" required class="form-control" />
   </div>
