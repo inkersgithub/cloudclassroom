@@ -58,8 +58,8 @@ $uclassname = $_SESSION['uclassname'];
 		<div class="col-sm-10" style="height :100%; text-align:center; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 536px;">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus" enctype="multipart/form-data">
       <h3 align="center"><u>Study materials</u></h3>
-      <input type="text" name="filename" value="" placeholder="File name" required class="form-control" style="margin-top:30px" />
-      <input type="text" name="filed" value="" placeholder="File Description" required class="form-control" style="margin-top:10px" />
+      <input type="text" name="filename" value="" placeholder="File name(if you want to show a different name)"  class="form-control" style="margin-top:30px" />
+      <input type="text" name="filed" value="" placeholder="File Description"  class="form-control" style="margin-top:10px" />
       <input type="file" name="file" style="margin-top:10px">
       <input type="submit" class="btn btn-primary" name="upload" value="Upload file">
       <?php
@@ -72,10 +72,16 @@ $uclassname = $_SESSION['uclassname'];
           $filetype=$_FILES['file']['type'];
 
           $fgivename = mysqli_real_escape_string($con, $_POST['filename']);
+          if($fgivename==""){
+            $fgivename = array_shift(explode('.',$filename));
+          }
           $description = mysqli_real_escape_string($con, $_POST['filed']);
+          if($description==""){
+            $description = "No Description";
+          }
           $temp=explode('.',$filename);
           $fileext=strtolower(end($temp));
-          $allowed = array('jpg','jpeg','png','pdf','docx','ppt');
+          $allowed = array('jpg','jpeg','png','pdf','docx','ppt','txt','mp3','mp4','avi');
 
           if(in_array($fileext,$allowed)){
             if($fileerror === 0){
@@ -120,13 +126,21 @@ $uclassname = $_SESSION['uclassname'];
                 <th style="text-align: center;">Filename</th>
                 <th style="text-align: center;">File Type</th>
                 <th style="text-align: center;">Description</th>
+                <th style="text-align: center;">Delete</th>
 
               </tr>
             </thead>
             <tbody>';
           while ($row = mysqli_fetch_array($res)) {
            $link ='<a href="' . $row['path'] . '">'.$row['filename'].'</a>';
-           echo "<tr><td>{$link}</td><td>{$row['type']}</td><td>{$row['description']}\n";
+           $delete= '<input style="text-align: center; margin-right: -9px;color: #cf0808; background-color: #f8f8f8; border-color: #f8f8f8;" type="submit" name="delete'. $row['sn'] .'" value="Remove" class="btn btn-primary"/><br>';
+           echo "<tr><td>{$link}</td><td>{$row['type']}</td><td>{$row['description']}</td><td>{$delete}</td></tr>\n";
+           $sn = $row['sn'];
+           if(isset($_POST['delete'.$sn])){
+             unlink($row['path']);
+             mysqli_query($con,"DELETE FROM data WHERE sn='$sn'");
+             header("Location: datateacher.php");
+           }
           }
         }
         echo '</tbody>
