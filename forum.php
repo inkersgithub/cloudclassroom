@@ -69,7 +69,7 @@ if (isset($_POST['post'])){
 		<div class="col-sm-10" style=".overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 200px;">
 
 			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="forumq">
-			<textarea name="txtarea" rows="5" cols="29" class="form-control" id="msgn" style="resize: none; margin-top:15px; overflow-y:scroll;" ></textarea>
+			<textarea name="txtarea" rows="3" cols="29" class="form-control" id="msgn" style="resize: none; margin-top:15px; overflow-y:scroll;" ></textarea>
       <p></p>
       <input type="submit" name="post" value="Post" style="margin: auto; margin-bottom:10px; display: block;padding: 7px 89px;border-radius: 28px;" class="btn btn-primary" onClick="return empty()"/>
 

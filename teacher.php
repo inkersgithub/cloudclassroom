@@ -134,7 +134,6 @@ else if (isset($_POST['delete'])){
 				<fieldset>
 					<legend>Create classroom</legend>
           <div class="form-group">
-						<label for="name">Class Name</label>
 						<input type="text" name="classname" value="" placeholder="New class name" required class="form-control" />
 					</div>
           <div class="form-group">
