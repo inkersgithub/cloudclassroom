@@ -69,12 +69,24 @@ $uclassname = $_SESSION['uclassname'];
         echo "<h3 align='center'>Data</h3>";
       }
       else {
+      echo '<table style="width:100%" border="2">
+          <thead>
+            <tr>
+              <th style="text-align: center;">Filename</th>
+              <th style="text-align: center;">File Type</th>
+              <th style="text-align: center;">Description</th>
+
+            </tr>
+          </thead>
+          <tbody>';
         while ($row = mysqli_fetch_array($res)) {
-          echo "<br>".$row['filename'];
-          echo ""?><a href="<?php echo $row['path']; ?>">Download</a> <?php echo "<br>";
+         $link ='<a href="' . $row['path'] . '">'.$row['filename'].'</a>';
+         echo "<tr style='text-align: center;'><td>{$link}</td><td>{$row['type']}</td><td>{$row['description']}\n";
         }
       }
-
+      echo '</tbody>
+        </table>
+      </div>';
       ?>
 
 		</div>

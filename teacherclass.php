@@ -37,6 +37,9 @@ if (isset($_POST['forum'])){
 if (isset($_POST['feedback'])){
   header("Location: feedback.php");
 }
+if (isset($_POST['cmanage'])){
+  header("Location: cmanage.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -103,7 +106,7 @@ if (isset($_POST['feedback'])){
             }
             if(isset($_POST['accept'.$sn])){
               mysqli_query($con,"UPDATE request SET status='1' WHERE sn='$sn'");
-              mysqli_query($con,"INSERT INTO studentclass(email,classname,uclassname,teachername) VALUES('" . $row['email'] . "', '" . $classname . "', '" . $uclassname . "', '" . $_SESSION['usr_name'] . "')");
+              mysqli_query($con,"INSERT INTO studentclass(email,studentname,institute,classname,uclassname,teachername) VALUES('" . $row['email'] . "','" . $row['name'] . "','" . $row['institute'] . "', '" . $classname . "', '" . $uclassname . "', '" . $_SESSION['usr_name'] . "')");
               header("Location: teacherclass.php");
             }
           }
@@ -116,7 +119,6 @@ if (isset($_POST['feedback'])){
       <input type="submit" name="data" value="Study material" class="btnext btnext-primary"/><br>
       <input type="submit" name="qbank" value="Question bank" class="btnext btnext-primary"/><br>
       <input type="submit" name="forum" value="Forum" class="btnext btnext-primary"/><br>
-
       <?php
           $res = mysqli_query($con,"SELECT * FROM feedback WHERE uclassname='$uclassname' AND status='0'");
           if(mysqli_num_rows($res) == 0) {
@@ -125,7 +127,7 @@ if (isset($_POST['feedback'])){
               echo '<input type="submit" name="feedback" value="Feedback" class="btnext btnext-primary" style="background-color: #19c507b3;border-color: #36ad2a;" /><br>';
           }
       ?>
-
+      <input type="submit" name="cmanage" value="Manage Class" class="btnext btnext-primary"/><br>
     </div>
 
     <div class="col-sm-3" style="height :540px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">

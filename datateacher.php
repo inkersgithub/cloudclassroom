@@ -58,10 +58,10 @@ $uclassname = $_SESSION['uclassname'];
 		<div class="col-sm-10" style="height :100%; text-align:center; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 536px;">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus" enctype="multipart/form-data">
       <h3 align="center"><u>Study materials</u></h3>
-
-      <input type="file" name="file">
+      <input type="text" name="filename" value="" placeholder="File name" required class="form-control" style="margin-top:30px" />
+      <input type="text" name="filed" value="" placeholder="File Description" required class="form-control" style="margin-top:10px" />
+      <input type="file" name="file" style="margin-top:10px">
       <input type="submit" class="btn btn-primary" name="upload" value="Upload file">
-      <input type="text" name="filename" value="" placeholder="File name" required class="form-control" />
       <?php
         if(isset($_POST['upload'])){
           $file=$_FILES['file'];
@@ -72,6 +72,7 @@ $uclassname = $_SESSION['uclassname'];
           $filetype=$_FILES['file']['type'];
 
           $fgivename = mysqli_real_escape_string($con, $_POST['filename']);
+          $description = mysqli_real_escape_string($con, $_POST['filed']);
           $temp=explode('.',$filename);
           $fileext=strtolower(end($temp));
           $allowed = array('jpg','jpeg','png','pdf','docx','ppt');
@@ -85,7 +86,8 @@ $uclassname = $_SESSION['uclassname'];
                   }
                   $path = 'uploads/'.$_SESSION['uclassname'].'/'.$filenewname;
                   if(move_uploaded_file($filetmpname,$path)){
-                    mysqli_query($con,"INSERT INTO data(uclassname,filename,path) VALUES('" . $uclassname . "', '" . $fgivename . "', '" . $path . "')");
+                    mysqli_query($con,"INSERT INTO data(uclassname,filename,path,type,description) VALUES('" . $uclassname . "', '" . $fgivename . "', '" . $path . "', '" . $filetype . "', '" . $description . "')");
+                    header('Location:datateacher.php');
                   }
 
               }
@@ -112,13 +114,25 @@ $uclassname = $_SESSION['uclassname'];
           echo "<h3 align='center'>Data</h3>";
         }
         else {
+        echo '<table style="width:100%" border="2">
+            <thead>
+              <tr>
+                <th style="text-align: center;">Filename</th>
+                <th style="text-align: center;">File Type</th>
+                <th style="text-align: center;">Description</th>
+
+              </tr>
+            </thead>
+            <tbody>';
           while ($row = mysqli_fetch_array($res)) {
-            echo "<br>".$row['filename'];
-            echo ""?><a href="<?php echo $row['path']; ?>">Download</a> <?php echo "<br>";
+           $link ='<a href="' . $row['path'] . '">'.$row['filename'].'</a>';
+           echo "<tr><td>{$link}</td><td>{$row['type']}</td><td>{$row['description']}\n";
           }
         }
-
-        ?>
+        echo '</tbody>
+          </table>
+        </div>';
+      ?>
 		</div>
 		<div class="col-sm-1" >
 

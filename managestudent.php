@@ -70,7 +70,7 @@ include_once 'dbconnect.php';
            while( $row = mysqli_fetch_assoc( $result ) ){
              echo "<tr><td>{$row['name']}</td><td>{$row['email']}</td><td>{$row['institute']}\n";
            }
-           ?>
+       ?>
          </tbody>
       </table>
 		 </div>
