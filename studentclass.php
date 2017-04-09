@@ -21,6 +21,10 @@ if (isset($_POST['qbank'])){
   header("Location: qbankstudent.php");
 }
 
+if (isset($_POST['mark'])){
+  header("Location: marksstudent.php");
+}
+
 if (isset($_POST['forum'])){
   header("Location: forum.php");
 }
@@ -101,6 +105,7 @@ if (isset($_POST['send'])){           //send feedback
       <h3 align="center"><u><?php echo $_SESSION['classname']; ?></u></h3>
       <input type="submit" name="data" value="Study materials" class="btnext btnext-primary"/><br>
       <input type="submit" name="qbank" value="Question bank" class="btnext btnext-primary"/><br>
+      <input type="submit" name="mark" value="Marks" class="btnext btnext-primary"/><br>
       <input type="submit" name="forum" value="Forum" class="btnext btnext-primary"/><br>
     </div>
     <div class="col-sm-3" style="height :540px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">

@@ -33,7 +33,7 @@ if (isset($_POST['add'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Study materials | VIRTUAL CLASSROOM</title>
+	<title>Manage class | VIRTUAL CLASSROOM</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" >
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>

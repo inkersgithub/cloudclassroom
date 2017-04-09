@@ -1,9 +1,9 @@
 <?php
 session_start();
 include_once 'dbconnect.php';
-if($_SESSION['usr_type']!="teacher" OR isset($_SESSION['usr_id'])==""){
-  if($_SESSION['usr_type']=="student"){
-    header("Location: student.php");
+if($_SESSION['usr_type']!="student" OR isset($_SESSION['usr_id'])==""){
+  if($_SESSION['usr_type']=="teacher"){
+    header("Location: teacher.php");
   }
   else {
     header("Location: index.php");

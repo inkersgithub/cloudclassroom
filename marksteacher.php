@@ -62,7 +62,7 @@ if(!isset($_SESSION['uclassname'])){
 		<div class="col-sm-10" style="height :100%; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 536px;">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
       <h3 align="center"><u>Marks</u></h3>
-
+    
 
 		</div>
 		<div class="col-sm-1" >
