@@ -122,7 +122,7 @@ if (isset($_POST['cmanage'])){
       <h3 align="center"><u><?php echo $_SESSION['classname']; ?></u></h3>
       <input type="submit" name="data" value="Study material" class="btnext btnext-primary"/><br>
       <input type="submit" name="qbank" value="Question bank" class="btnext btnext-primary"/><br>
-      <input type="submit" name="mark" value="Marks" class="btnext btnext-primary"/><br>
+      <input type="submit" name="mark" value="Marks/Attendance" class="btnext btnext-primary"/><br>
       <input type="submit" name="forum" value="Forum" class="btnext btnext-primary"/><br>
       <?php
           $res = mysqli_query($con,"SELECT * FROM feedback WHERE uclassname='$uclassname' AND status='0'");

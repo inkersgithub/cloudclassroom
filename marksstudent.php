@@ -14,13 +14,14 @@ if(!isset($_SESSION['uclassname'])){
 	header("Location: index.php");
 }
 
+$uclassname = $_SESSION['uclassname'];
 
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Marks | VIRTUAL CLASSROOM</title>
+	<title>Marks/Attendance | VIRTUAL CLASSROOM</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" >
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>
@@ -36,7 +37,7 @@ if(!isset($_SESSION['uclassname'])){
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM : <?php echo $_SESSION['classname']; ?></a>
+			<a class="navbar-brand" href="studentclass.php">VIRTUAL CLASSROOM : <?php echo $_SESSION['classname']; ?></a>
 		</div>
 		<!-- menu items -->
 		<div class="collapse navbar-collapse" id="navbar1">
@@ -59,10 +60,25 @@ if(!isset($_SESSION['uclassname'])){
     <div class="col-sm-1">
 
 		</div>
-		<div class="col-sm-10" style="height :100%; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 536px;">
+		<div class="col-sm-10" style="height :100%; overflow-y:scroll; text-align:center; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;min-height: 536px;">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
-      <h3 align="center"><u>Marks</u></h3>
+      <h3 align="center"><u>Marks/Attendance</u></h3>
 
+      <?php
+        echo "<hr style = 'border-width:2px;'>";
+        $res = mysqli_query($con,"SELECT * FROM mark WHERE uclassname='$uclassname'");
+        if(mysqli_num_rows($res) == 0) {
+          echo "<br></br>";
+          echo "<br></br>";
+          echo "<h3 align='center'>No</h3>";
+          echo "<h3 align='center'>Data</h3>";
+        }
+        else {
+          while ($row = mysqli_fetch_array($res)){
+            echo $row['embedcode'];
+          }
+        }
+      ?>
 
 		</div>
 		<div class="col-sm-1" >

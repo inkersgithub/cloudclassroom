@@ -82,9 +82,7 @@ if (isset($_POST['send'])){           //send feedback
       <?php
         $res = mysqli_query($con,"SELECT * FROM notification WHERE uclassname='$uclassname' ORDER BY sn DESC LIMIT 10");
         if(mysqli_num_rows($res) == 0) {
-          echo "<br></br>";
-          echo "<br></br>";
-          echo "<br></br>";
+          echo "<br><br><br><br><br><br><br><br><br><br><br><br>";
           echo "<h3 align='center'>No</h3>";
           echo "<h3 align='center'>Notifications</h3>";
         }
@@ -105,7 +103,7 @@ if (isset($_POST['send'])){           //send feedback
       <h3 align="center"><u><?php echo $_SESSION['classname']; ?></u></h3>
       <input type="submit" name="data" value="Study materials" class="btnext btnext-primary"/><br>
       <input type="submit" name="qbank" value="Question bank" class="btnext btnext-primary"/><br>
-      <input type="submit" name="mark" value="Marks" class="btnext btnext-primary"/><br>
+      <input type="submit" name="mark" value="Marks/Attendance" class="btnext btnext-primary"/><br>
       <input type="submit" name="forum" value="Forum" class="btnext btnext-primary"/><br>
     </div>
     <div class="col-sm-3" style="height :540px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
@@ -118,8 +116,6 @@ if (isset($_POST['send'])){           //send feedback
       <?php
         $res = mysqli_query($con,"SELECT * FROM feedback WHERE uclassname='$uclassname' AND email='$email'");
         if(mysqli_num_rows($res) == 0) {
-          echo "<br></br>";
-          echo "<br></br>";
           echo "<br></br>";
           echo "<h3 align='center'>No</h3>";
           echo "<h3 align='center'>Feedback</h3>";

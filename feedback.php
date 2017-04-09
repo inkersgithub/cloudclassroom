@@ -34,7 +34,7 @@ $uclassname=$_SESSION['uclassname'];
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">VIRTUAL CLASSROOM : <?php echo $_SESSION['classname']; ?></a></a>
+			<a class="navbar-brand" href="teacherclass.php">VIRTUAL CLASSROOM : <?php echo $_SESSION['classname']; ?></a></a>
 		</div>
 		<!-- menu items -->
 		<div class="collapse navbar-collapse" id="navbar1">

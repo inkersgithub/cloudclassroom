@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 08, 2017 at 06:29 PM
+-- Generation Time: Apr 09, 2017 at 12:19 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -34,14 +34,6 @@ CREATE TABLE `data` (
   `description` text NOT NULL,
   `path` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `data`
---
-
-INSERT INTO `data` (`sn`, `uclassname`, `filename`, `type`, `description`, `path`) VALUES
-(13, 'anoop@gmail.com|DCS', 'data', 'image/jpeg', 'dwadawe', 'uploads/anoop@gmail.com|DCS/data58e90db4d8c077.92746691.jpg'),
-(12, 'anoop@gmail.com|DCS', 'Kambi confidential', 'image/jpeg', 'kambi confidential nude images ', 'uploads/anoop@gmail.com|DCS/Kambi confidential58e907f007ca33.53356295.jpg');
 
 -- --------------------------------------------------------
 
@@ -80,7 +72,6 @@ CREATE TABLE `foruma` (
 --
 
 INSERT INTO `foruma` (`sn`, `threadid`, `email`, `uclassname`, `name`, `answer`, `date`) VALUES
-(46, '42', 'anoop@gmail.com', 'anoop@gmail.com|DCS', 'Anoop|teacher', ',l;,l;,l;,l;', '2017-04-08 12:35:36'),
 (49, '42', 'ashi@gmail.com', 'anoop@gmail.com|DCS', 'Ashi|student', 'uhymjioumjio', '2017-04-08 12:36:17');
 
 -- --------------------------------------------------------
@@ -104,6 +95,25 @@ CREATE TABLE `forumq` (
 
 INSERT INTO `forumq` (`threadn`, `name`, `email`, `uclassname`, `thread`, `date`) VALUES
 (42, 'Anoop|teacher', 'anoop@gmail.com', 'anoop@gmail.com|DCS', ',lp;mkil;kml', '2017-04-08 12:35:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mark`
+--
+
+CREATE TABLE `mark` (
+  `sn` int(11) NOT NULL,
+  `uclassname` varchar(70) NOT NULL,
+  `embedcode` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mark`
+--
+
+INSERT INTO `mark` (`sn`, `uclassname`, `embedcode`) VALUES
+(1, 'anoop@gmail.com|DCS', '<iframe src=\"https://docs.google.com/spreadsheets/d/1Aq16ANRVUFJ35Z6FQY6dwMhAYOmkWO_I6UpKWCaWoc8/pubhtml?widget=true&amp;headers=false\"></iframe>');
 
 -- --------------------------------------------------------
 
@@ -276,6 +286,13 @@ ALTER TABLE `forumq`
   ADD PRIMARY KEY (`threadn`);
 
 --
+-- Indexes for table `mark`
+--
+ALTER TABLE `mark`
+  ADD PRIMARY KEY (`uclassname`),
+  ADD UNIQUE KEY `sn` (`sn`);
+
+--
 -- Indexes for table `notification`
 --
 ALTER TABLE `notification`
@@ -327,7 +344,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `data`
 --
 ALTER TABLE `data`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `feedback`
 --
@@ -337,12 +354,17 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `foruma`
 --
 ALTER TABLE `foruma`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `forumq`
 --
 ALTER TABLE `forumq`
   MODIFY `threadn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+--
+-- AUTO_INCREMENT for table `mark`
+--
+ALTER TABLE `mark`
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `notification`
 --
