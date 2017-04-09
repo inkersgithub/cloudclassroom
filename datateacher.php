@@ -60,8 +60,8 @@ $uclassname = $_SESSION['uclassname'];
       <h3 align="center"><u>Study materials</u></h3>
       <input type="text" name="filename" value="" placeholder="File name(if you want to show a different name)"  class="form-control" style="margin-top:30px" />
       <input type="text" name="filed" value="" placeholder="File Description"  class="form-control" style="margin-top:10px" />
-      <input type="file" name="file" style="margin-top:10px">
-      <input type="submit" class="btn btn-primary" name="upload" value="Upload file">
+      <input type="file" name="file" class="btnbrowse" style="display:inline; margin-top:5px;padding-top:14px;">
+      <input type="submit" class="btn btn-primary" name="upload" value="Upload file" style="margin-top:10px">
       <?php
         if(isset($_POST['upload'])){
           $file=$_FILES['file'];

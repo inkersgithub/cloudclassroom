@@ -91,7 +91,7 @@ if (isset($_POST['signup'])) {
 
 					<div class="form-group">
 						<label for="name">Name</label>
-						<input type="text" name="name" placeholder="Enter Full Name" required value="<?php if($error) echo $name; ?>" class="form-control" />
+						<input type="text" name="name" placeholder="Enter Full Name" required value="<?php if($error) echo $name; ?>" class="form-control"/>
 						<span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
 					</div>
 
@@ -103,7 +103,7 @@ if (isset($_POST['signup'])) {
 
 					<div class="form-group">
 						<label for="name">Name of Institution</label>
-						<input type="text" name="institute" placeholder="College/School name" required value="<?php if($error) echo $institute; ?>" class="form-control" />
+						<input type="text" name="institute" placeholder="College/School name" required value="<?php if($error) echo $institute; ?>" class="form-control" id="fname" onblur="myFunction()"/>
 						<span class="text-danger"><?php if (isset($institute_error)) echo $institute_error; ?></span>
 					</div>
 
@@ -145,5 +145,6 @@ if (isset($_POST['signup'])) {
 <div class="footer"><strong> <a href="https://www.inkers.in">inkers Inc.</a> </strong>.</div>
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jqueryext.js"></script>
 </body>
 </html>

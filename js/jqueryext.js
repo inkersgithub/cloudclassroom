@@ -17,3 +17,11 @@ function empty1() {
         return false;
     };
 }
+function myFunction() {
+    var x = document.getElementById("fname");
+    x.value = x.value.toUpperCase();
+}
+function myFunctionname() {
+    var x = document.getElementById("name");
+    x.value = x.value.toUpperCase();
+}

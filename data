@@ -59,3 +59,11 @@ if ($row = mysqli_fetch_array($result)) {
      $value['current_date']=$row['date'];
      echo $value['current_date'];
 }
+
+
+
+
+
+
+
+onclick="return confirm('Are you sure you want to do that?');"      confirmation msg

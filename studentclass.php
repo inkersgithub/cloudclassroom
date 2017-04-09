@@ -82,7 +82,7 @@ if (isset($_POST['send'])){           //send feedback
       <?php
         $res = mysqli_query($con,"SELECT * FROM notification WHERE uclassname='$uclassname' ORDER BY sn DESC LIMIT 10");
         if(mysqli_num_rows($res) == 0) {
-          echo "<br><br><br><br><br><br><br><br><br><br><br><br>";
+          echo "<br><br><br><br><br><br><br><br><br><br><br>";
           echo "<h3 align='center'>No</h3>";
           echo "<h3 align='center'>Notifications</h3>";
         }
@@ -110,13 +110,12 @@ if (isset($_POST['send'])){           //send feedback
       <h3 align="center"><u>Feedback</u></h3>
       <textarea style="resize: none; overflow-y:scroll; margin-top: 20px;" name="txtarea" rows="5" cols="29" class="form-control" id="msgn"></textarea>
       <p></p>
-      <input type="submit" name="send" value="Send" style="margin-left:91px;margin-top:5px;" class="btn btn-primary" onClick="return empty()"/>
+      <input type="submit" name="send" value="Send" style="margin:auto; display:block; margin-top:5px;" class="btn btn-primary" onClick="return empty()"/>
       <br></br>
       <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
       <?php
         $res = mysqli_query($con,"SELECT * FROM feedback WHERE uclassname='$uclassname' AND email='$email'");
         if(mysqli_num_rows($res) == 0) {
-          echo "<br></br>";
           echo "<h3 align='center'>No</h3>";
           echo "<h3 align='center'>Feedback</h3>";
         }

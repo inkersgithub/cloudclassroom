@@ -140,7 +140,7 @@ if (isset($_POST['cmanage'])){
       <h3 align="center"><u>Notify all</u></h3>
       <textarea style="resize: none; overflow-y:scroll;" name="txtarea" rows="5" cols="29" class="form-control" id="msgn"></textarea>
       <p></p>
-      <input type="submit" name="notify" value="Notify" style="margin-left:91px;margin-top:5px;" class="btn btn-primary" onClick="return empty()"/>
+      <input type="submit" name="notify" value="Notify" style="margin:auto; display:block; margin-top:5px;" class="btn btn-primary" onClick="return empty()"/>
       <br></br>
       <?php
         $res = mysqli_query($con,"SELECT * FROM notification WHERE uclassname='$uclassname' ORDER BY sn DESC LIMIT 10");
