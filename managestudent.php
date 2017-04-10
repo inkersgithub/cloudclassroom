@@ -3,10 +3,24 @@ session_start();
 if($_SESSION['usr_type']!="admin" OR isset($_SESSION['usr_id'])==""){
   header('Location:index.php');
 }
-
-
-
 include_once 'dbconnect.php';
+
+if(isset($_POST['remove'])){
+  $email = $_POST['email'];
+  $result = mysqli_query($con, "SELECT * FROM users WHERE email = '" . $email. "'");
+  if(mysqli_num_rows($result) != 0) {
+    $successmsg = "Removed Sucessfully";
+    $tables = array("studentclass","feedback","foruma","forumq","request","users");
+    foreach($tables as $table) {
+      $query = "DELETE FROM $table WHERE email='$email'";
+      mysqli_query($con,$query);
+    }
+  }else {
+    $errormsg = "Invalid Email";
+  }
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +103,9 @@ include_once 'dbconnect.php';
     <input type="text" name="email" value="" placeholder="Student email" required class="form-control" />
   </div>
   <div class="col-sm-4">
-    <input type="submit" name="delete" value="Delete" class="btn btn-primary" />
+    <input type="submit" name="remove" value="Delete" class="btn btn-primary" />
+    <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
+    <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
   </div>
 </div>
 <script src="js/jquery-1.10.2.js"></script>

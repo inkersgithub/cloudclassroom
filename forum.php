@@ -106,11 +106,12 @@ if (isset($_POST['post'])){
 							header("Location: forum.php");
 						}
 					}
-					if($_SESSION['usr_email']==$row['email']){
+					if($_SESSION['usr_email']==$row['email'] && $_SESSION['usr_type'] != "admin"){
 						echo "<br>";
 						echo '<input style="float:right; margin-right: -9px;color: #cf0808; background-color: #f8f8f8; border-color: #f8f8f8;" type="submit" name="delete'. $row['threadn'] .'" value="Remove" class="btn btn-primary"/><br>';
 						if(isset($_POST['delete'.$threadn])){
 							mysqli_query($con,"DELETE FROM forumq WHERE threadn='$threadn'");
+							mysqli_query($con,"DELETE FROM foruma WHERE threadid='$threadn'");
 							header("Location: forum.php");
 						}
 					}

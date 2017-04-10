@@ -117,16 +117,16 @@ if (isset($_POST['replay'])){
 		            echo $value['current_date'];
 								echo "         #Replied by ".$row['name'];
 								if($_SESSION['usr_type']=="admin"){
-									echo "<br>";
-									echo '<input style="float:right; color: #cf0808; background-color: #f8f8f8; border-color: #f8f8f8;" type="submit" name="delete'. $row['sn'] .'" value="Remove" class="btn btn-primary"/><br>';
+									//echo "<br>";
+									echo '<input style="float:right; margin-top:-5px; color: #cf0808; background-color: #f8f8f8; border-color: #f8f8f8;" type="submit" name="delete'. $row['sn'] .'" value="Remove" class="btn btn-primary"/><br>';
 									if(isset($_POST['delete'.$sn])){
 										mysqli_query($con,"DELETE FROM foruma WHERE sn='$sn'");
 										header("Location: forumreplay.php?link=$threadid");
 									}
 								}
-								if($_SESSION['usr_email']==$row['email']){
-									echo "<br>";
-									echo '<input style="float:right;color: #cf0808; background-color: #f8f8f8; border-color: #f8f8f8;" type="submit" name="delete'. $row['sn'] .'" value="Remove" class="btn btn-primary"/><br>';
+								if($_SESSION['usr_email']==$row['email'] && $_SESSION['usr_type'] != "admin"){
+									// echo "<br>";
+									echo '<input style="float:right;color: #cf0808; margin-top:-5px; background-color: #f8f8f8; border-color: #f8f8f8;" type="submit" name="delete'. $row['sn'] .'" value="Remove" class="btn btn-primary"/><br>';
 									if(isset($_POST['delete'.$sn])){
 										mysqli_query($con,"DELETE FROM foruma WHERE sn='$sn'");
 										header("Location: forumreplay.php?link=$threadid");
