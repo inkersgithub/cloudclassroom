@@ -93,6 +93,7 @@ $uclassname = $_SESSION['uclassname'];
                   $path = 'uploads/'.$_SESSION['uclassname'].'/'.$filenewname;
                   if(move_uploaded_file($filetmpname,$path)){
                     mysqli_query($con,"INSERT INTO data(uclassname,filename,path,type,description) VALUES('" . $uclassname . "', '" . $fgivename . "', '" . $path . "', '" . $filetype . "', '" . $description . "')");
+                    mysqli_query($con,"UPDATE studentclass SET dstatus='1' WHERE uclassname='$uclassname'");
                     header('Location:datateacher.php');
                   }
 

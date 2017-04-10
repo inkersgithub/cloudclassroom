@@ -14,18 +14,22 @@ $sname=$_SESSION['usr_name'];
 $email=$_SESSION['usr_email'];
 
 if (isset($_POST['data'])){
+  mysqli_query($con,"UPDATE studentclass SET dstatus='0' WHERE uclassname='$uclassname' AND email='$email'");
   header("Location: datastudent.php");
 }
 
 if (isset($_POST['qbank'])){
+  mysqli_query($con,"UPDATE studentclass SET qbstatus='0' WHERE uclassname='$uclassname' AND email='$email'");
   header("Location: qbankstudent.php");
 }
 
 if (isset($_POST['mark'])){
+  mysqli_query($con,"UPDATE studentclass SET mstatus='0' WHERE uclassname='$uclassname' AND email='$email'");
   header("Location: marksstudent.php");
 }
 
 if (isset($_POST['forum'])){
+  mysqli_query($con,"UPDATE studentclass SET fstatus='0' WHERE uclassname='$uclassname' AND email='$email'");
   header("Location: forum.php");
 }
 
@@ -101,10 +105,36 @@ if (isset($_POST['send'])){           //send feedback
     <div class="col-sm-6">
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
       <h3 align="center"><u><?php echo $_SESSION['classname']; ?></u></h3>
-      <input type="submit" name="data" value="Study materials" class="btnext btnext-primary"/><br>
-      <input type="submit" name="qbank" value="Question bank" class="btnext btnext-primary"/><br>
-      <input type="submit" name="mark" value="Marks/Attendance" class="btnext btnext-primary"/><br>
-      <input type="submit" name="forum" value="Forum" class="btnext btnext-primary"/><br>
+      <?php
+      
+          $res = mysqli_query($con,"SELECT * FROM studentclass WHERE email='$email' AND dstatus='1'");
+          if(mysqli_num_rows($res) == 0) {
+            echo '<input type="submit" name="data" value="Study materials" class="btnext btnext-primary" /><br>';
+          }else{
+            echo '<input type="submit" name="data" value="Study materials" class="btnext btnext-primary" style="border-color: #36ad2a;" /><br>';
+          }
+
+          $res = mysqli_query($con,"SELECT * FROM studentclass WHERE email='$email' AND qbstatus='1'");
+          if(mysqli_num_rows($res) == 0) {
+              echo '<input type="submit" name="qbank" value="Question Bank" class="btnext btnext-primary" /><br>';
+          }else{
+              echo '<input type="submit" name="qbank" value="Question Bank" class="btnext btnext-primary" style="border-color: #36ad2a;" /><br>';
+          }
+
+          $res = mysqli_query($con,"SELECT * FROM studentclass WHERE email='$email' AND fstatus='1'");
+          if(mysqli_num_rows($res) == 0) {
+              echo '<input type="submit" name="mark" value="Mark/Attendence" class="btnext btnext-primary" /><br>';
+          }else{
+              echo '<input type="submit" name="mark" value="Marks/Attendence" class="btnext btnext-primary" style="border-color: #36ad2a;" /><br>';
+          }
+
+          $res = mysqli_query($con,"SELECT * FROM studentclass WHERE email='$email' AND fstatus='1'");
+          if(mysqli_num_rows($res) == 0) {
+              echo '<input type="submit" name="forum" value="Forum" class="btnext btnext-primary" /><br>';
+          }else{
+              echo '<input type="submit" name="forum" value="Forum" class="btnext btnext-primary" style="border-color: #36ad2a;" /><br>';
+          }
+      ?>
     </div>
     <div class="col-sm-3" style="height :540px; overflow-y:scroll; border-size:2px;border-style:solid; border-color:#e7e7e7; background-color: #f8f8f8;">
       <h3 align="center"><u>Feedback</u></h3>

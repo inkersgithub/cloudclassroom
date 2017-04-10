@@ -18,6 +18,7 @@ $uclassname=$_SESSION['uclassname'];
 if(isset($_POST['post'])){
   $question=$_POST['txtarea'];
   mysqli_query($con,"INSERT INTO qbank(uclassname,question) VALUES('" . $uclassname ."', '" . $question ."') ");
+  mysqli_query($con,"UPDATE studentclass SET qbstatus='1' WHERE uclassname='$uclassname'");
   header("Location: qbankteacher.php");
 }
 

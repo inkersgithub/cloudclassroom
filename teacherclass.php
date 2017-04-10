@@ -35,6 +35,7 @@ if (isset($_POST['mark'])){
 }
 
 if (isset($_POST['forum'])){
+  mysqli_query($con,"UPDATE teacherclass SET fstatus='0' WHERE uclassname='$uclassname'");
   header("Location: forum.php");
 }
 
@@ -123,8 +124,14 @@ if (isset($_POST['cmanage'])){
       <input type="submit" name="data" value="Study material" class="btnext btnext-primary"/><br>
       <input type="submit" name="qbank" value="Question bank" class="btnext btnext-primary"/><br>
       <input type="submit" name="mark" value="Marks/Attendance" class="btnext btnext-primary"/><br>
-      <input type="submit" name="forum" value="Forum" class="btnext btnext-primary"/><br>
       <?php
+          $res = mysqli_query($con,"SELECT * FROM teacherclass WHERE uclassname='$uclassname' AND fstatus='1'");
+          if(mysqli_num_rows($res) == 0) {
+              echo '<input type="submit" name="forum" value="Forum" class="btnext btnext-primary" /><br>';
+            }else{
+              echo '<input type="submit" name="forum" value="Forum" class="btnext btnext-primary" style="border-color: #36ad2a;" /><br>';
+          }
+
           $res = mysqli_query($con,"SELECT * FROM feedback WHERE uclassname='$uclassname' AND status='0'");
           if(mysqli_num_rows($res) == 0) {
               echo '<input type="submit" name="feedback" value="Feedback" class="btnext btnext-primary" /><br>';

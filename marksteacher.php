@@ -72,9 +72,11 @@ $uclassname = $_SESSION['uclassname'];
           $res = mysqli_query($con,"SELECT * FROM mark WHERE uclassname='$uclassname'");
           if(mysqli_num_rows($res) == 0){
             mysqli_query($con,"INSERT INTO mark(uclassname,embedcode) VALUES('" . $uclassname . "', '" . $embedcode . "')");
+            mysqli_query($con,"UPDATE studentclass SET mstatus='1' WHERE uclassname='$uclassname'");
           }
           else {
             mysqli_query($con,"UPDATE mark SET embedcode='$embedcode' WHERE uclassname='$uclassname'");
+            mysqli_query($con,"UPDATE studentclass SET mstatus='1' WHERE uclassname='$uclassname'");
           }
         }
 
