@@ -3,10 +3,31 @@ session_start();
 if($_SESSION['usr_type']!="admin" OR isset($_SESSION['usr_id'])==""){
   header('Location:index.php');
 }
-
-
-
 include_once 'dbconnect.php';
+
+if (isset($_POST['delete'])){
+  $classname = $_POST['classname'];
+  $email = $_POST['email'];
+  $uclassname = $email . '|' . $classname;
+  $tables = array("studentclass","request","foruma","forumq","mark","notification","qbank","feedback","teacherclass");
+  if($classname!="default"){
+    foreach($tables as $table) {
+      $query = "DELETE FROM $table WHERE uclassname='$uclassname'";
+      mysqli_query($con,$query);
+    }
+    $res = mysqli_query($con,"SELECT * FROM data WHERE uclassname='$uclassname'");
+    if((mysqli_num_rows($res) != 0) || (is_dir('uploads/'.$uclassname))) {
+      $dir = 'uploads/'.$uclassname;
+      array_map('unlink', glob($dir."/*"));
+      rmdir($dir);
+      mysqli_query($con,"DELETE FROM data WHERE uclassname='$uclassname'");
+    }
+    $dsuccessmsg = "Class deleted sucessfully";
+  }
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +108,7 @@ include_once 'dbconnect.php';
 
 <div class="footer" style="text-align:center;">
   <div class="col-sm-5">
-    <input type="text" name="classname" value="" placeholder="Class name" required class="form-control" />
+    <input type="text" name="classname" value="" placeholder="Class name" required class="form-control" id="fname" onblur="myFunction()" />
   </div>
   <div class="col-sm-5">
     <input type="text" name="email" value="" placeholder="Teacher email" required class="form-control" />
@@ -98,5 +119,6 @@ include_once 'dbconnect.php';
 </div>
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jqueryext.js"></script>
 </body>
 </html>

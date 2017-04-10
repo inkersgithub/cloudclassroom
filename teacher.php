@@ -145,7 +145,7 @@ else if (isset($_POST['delete'])){
 				<fieldset>
 					<legend>Create classroom</legend>
           <div class="form-group">
-						<input type="text" name="classname" value="" placeholder="New class name" required class="form-control" />
+						<input type="text" name="classname" value="" placeholder="New class name" required class="form-control" id="fname" onblur="myFunction()" />
 					</div>
           <div class="form-group">
 						<input type="submit" name="createclass" value="Create" class="btn btn-primary" />
@@ -195,5 +195,6 @@ else if (isset($_POST['delete'])){
 <div class="footer"><strong> <a href="https://www.inkers.in">inkers Inc.</a> </strong></div>
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jqueryext.js"></script>
 </body>
 </html>
