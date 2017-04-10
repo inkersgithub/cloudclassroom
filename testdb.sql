@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 09, 2017 at 12:19 PM
+-- Generation Time: Apr 10, 2017 at 03:49 PM
 -- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -169,8 +169,7 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`sn`, `name`, `email`, `institute`, `uclassname`, `classname`, `status`) VALUES
-(65, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', 'zade@gmail.com|DBMS', 'DBMS', 2),
-(73, 'dddd', 'dddd@gmail.com', 'jcet', 'anoop@gmail.com|DCS', 'DCS', 1);
+(65, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', 'zade@gmail.com|DBMS', 'DBMS', 2);
 
 -- --------------------------------------------------------
 
@@ -193,15 +192,13 @@ CREATE TABLE `studentclass` (
 --
 
 INSERT INTO `studentclass` (`sn`, `email`, `studentname`, `institute`, `classname`, `uclassname`, `teachername`) VALUES
-(8, 'sree@gmail.com', '', '', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
-(9, 'sree@gmail.com', '', '', 'MIS', 'anoop@gmail.com|MIS', 'Anoop'),
-(10, 'ashi@gmail.com', '', '', 'MIS', 'anoop@gmail.com|MIS', 'Anoop'),
-(11, 'ashi@gmail.com', '', '', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
-(14, 'sree@gmail.com', '', '', 'TOC', 'zade@gmail.com|TOC', 'Zade'),
-(15, 'ashi@gmail.com', '', '', 'TOC', 'zade@gmail.com|TOC', 'Zade'),
-(16, 'ashi@gmail.com', '', '', 'DBMS', 'zade@gmail.com|DBMS', 'Zade'),
-(17, 'dddd@gmail.com', 'dddd', 'jcet', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
-(18, 'vava@gmail.com', 'vava', 'jcet', 'DCS', 'anoop@gmail.com|DCS', 'Anoop');
+(8, 'sree@gmail.com', 'Navaneetha', 'PKDIMS', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
+(9, 'sree@gmail.com', 'Navaneetha', 'PKDIMS', 'MIS', 'anoop@gmail.com|MIS', 'Anoop'),
+(10, 'ashi@gmail.com', 'Ashi', 'MES', 'MIS', 'anoop@gmail.com|MIS', 'Anoop'),
+(11, 'ashi@gmail.com', 'Ashi', 'MES', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
+(14, 'sree@gmail.com', 'Navaneetha', 'PKDIMS', 'TOC', 'zade@gmail.com|TOC', 'Zade'),
+(15, 'ashi@gmail.com', 'Ashi', 'MES', 'TOC', 'zade@gmail.com|TOC', 'Zade'),
+(16, 'ashi@gmail.com', 'Ashi', 'MES', 'DBMS', 'zade@gmail.com|DBMS', 'Zade');
 
 -- --------------------------------------------------------
 
@@ -252,9 +249,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `institute`, `password`, `type`) VAL
 (9, 'Zade', 'zade@gmail.com', 'JCET', '21232f297a57a5a743894a0e4a801fc3', 'teacher'),
 (10, 'Anoop', 'anoop@gmail.com', 'JCET', '21232f297a57a5a743894a0e4a801fc3', 'teacher'),
 (11, 'Ashi', 'ashi@gmail.com', 'MES', '21232f297a57a5a743894a0e4a801fc3', 'student'),
-(12, 'admin', 'admin@gmail.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
-(13, 'dddd', 'dddd@gmail.com', 'jcet', '21232f297a57a5a743894a0e4a801fc3', 'student'),
-(14, 'vava', 'vava@gmail.com', 'jcet', '21232f297a57a5a743894a0e4a801fc3', 'student');
+(12, 'admin', 'admin@gmail.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 --
 -- Indexes for dumped tables
