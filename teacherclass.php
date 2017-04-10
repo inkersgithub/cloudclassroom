@@ -99,9 +99,9 @@ if (isset($_POST['cmanage'])){
         else {
           while ($row = mysqli_fetch_array($res)) {
             $sn = $row['sn'];
-            echo "Name      : ".$row['name']."<br>";
+            echo "<br>Name      : ".$row['name']."<br>";
             echo "Email     : ".$row['email']."<br>";
-            echo "Institute : ".$row['institute']."<br><br>";
+            echo "Institute : ".$row['institute']."<br>";
             echo '<input type="submit" name="accept'. $row['sn'] .'" value="Accept" class="btn btn-primary"/>  ';
             echo '<input type="submit" name="delete'. $row['sn'] .'" value="Reject" class="btn btn-primary"/><br>';
             if(isset($_POST['delete'.$sn])){
@@ -129,7 +129,7 @@ if (isset($_POST['cmanage'])){
           if(mysqli_num_rows($res) == 0) {
               echo '<input type="submit" name="feedback" value="Feedback" class="btnext btnext-primary" /><br>';
           }else{
-              echo '<input type="submit" name="feedback" value="Feedback" class="btnext btnext-primary" style="background-color: #19c507b3;border-color: #36ad2a;" /><br>';
+              echo '<input type="submit" name="feedback" value="Feedback" class="btnext btnext-primary" style="border-color: #36ad2a;" /><br>';
           }
       ?>
       <input type="submit" name="cmanage" value="Manage Class" class="btnext btnext-primary"/><br>

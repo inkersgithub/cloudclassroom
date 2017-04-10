@@ -47,13 +47,20 @@ else if (isset($_POST['delete'])){
   $classname = $_POST['deletevalue'];
   $email=$_SESSION['usr_email'];
   $uclassname = $email . '|' . $classname;
-  $sql = "DELETE FROM teacherclass WHERE uclassname='$uclassname'";
+  $tables = array("studentclass","request","foruma","forumq","mark","notification","qbank","feedback","teacherclass");
   if($classname!="default"){
-    if(mysqli_query($con, $sql)){
-      mysqli_query($con,"DELETE FROM studentclass WHERE uclassname='$uclassname'");
-      mysqli_query($con,"DELETE FROM request WHERE uclassname='$uclassname'");
-      $dsuccessmsg = "Class deleted sucessfully";
+    foreach($tables as $table) {
+      $query = "DELETE FROM $table WHERE uclassname='$uclassname'";
+      mysqli_query($con,$query);
     }
+    $res = mysqli_query($con,"SELECT * FROM data WHERE uclassname='$uclassname'");
+    if((mysqli_num_rows($res) != 0) || (is_dir('uploads/'.$uclassname))) {
+      $dir = 'uploads/'.$uclassname;
+      array_map('unlink', glob($dir."/*"));
+      rmdir($dir);
+      mysqli_query($con,"DELETE FROM data WHERE uclassname='$uclassname'");
+    }
+    $dsuccessmsg = "Class deleted sucessfully";
   }
 }
 ?>
