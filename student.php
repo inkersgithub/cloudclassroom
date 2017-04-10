@@ -41,6 +41,17 @@ if (isset($_POST['enter'])){
     header("Location: studentclass.php");
   }
 }
+
+if (isset($_POST['exit'])){
+  $enterclass = $_POST['exitclass'];
+  if($enterclass!="default"){
+
+    header("Location: student.php");
+  }
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -140,6 +151,40 @@ if (isset($_POST['enter'])){
 </div>
 
 <!--class search ended -->
+
+
+<!-- Exit Class Start -->
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 well">
+			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="classcreationform">
+				<fieldset>
+					<legend>Exit Class</legend>
+          <div class="form-group">
+            <select name="exitclass" class="form-control">
+            <option value="default">Select</option>
+            <?php
+
+            $sql = mysqli_query($con, "SELECT * FROM studentclass WHERE email='$email'");
+            $row = mysqli_num_rows($sql);
+            while ($row = mysqli_fetch_array($sql)){
+
+            echo "<option value='". $row['uclassname'] ."'>".$row['classname']. "-" .$row['teachername'] ."</option>" ;
+            }
+            ?>
+            </select>
+					</div>
+          <div class="form-group">
+						<input type="submit" name="exit" value="Exit" class="btn btn-primary" />
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Exit Class End -->
 
 <!--request response notification-->
 <?php
