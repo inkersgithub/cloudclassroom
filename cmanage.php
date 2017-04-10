@@ -30,15 +30,15 @@ if (isset($_POST['add'])) {
 
 if(isset($_POST['remove'])){
   $email = $_POST['entervalue'];
+  $tables = array("studentclass","feedback");
   if($email!="default"){
-    $tables = array("studentclass","request","feedback");
     foreach($tables as $table) {
-      $query = "DELETE FROM $table WHERE email='$email' AND uclassname='$uclassname']";
+      $query = "DELETE FROM $table WHERE email='$email' AND uclassname='$uclassname'";
       mysqli_query($con,$query);
     }
     $result = mysqli_query($con, "SELECT * FROM forumq WHERE email = '$email'  AND uclassname='$uclassname'");
     while ($row = mysqli_fetch_array($result)){
-      $threadid = $row['threadid'];
+      $threadid = $row['threadn'];
       mysqli_query($con,"DELETE FROM foruma WHERE threadid = '$threadid'");
     }
     mysqli_query($con,"DELETE FROM foruma WHERE email='$email' AND uclassname='$uclassname'");
