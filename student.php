@@ -43,12 +43,25 @@ if (isset($_POST['enter'])){
 }
 
 if (isset($_POST['exit'])){
-  $enterclass = $_POST['exitclass'];
-  if($enterclass!="default"){
-
-    header("Location: student.php");
+  $uclassname = $_POST['exitclass'];
+  $tables = array("studentclass","feedback");
+  if($email!="default"){
+    foreach($tables as $table) {
+      $query = "DELETE FROM $table WHERE email='$email' AND uclassname='$uclassname'";
+      mysqli_query($con,$query);
+    }
+    $result = mysqli_query($con, "SELECT * FROM forumq WHERE email = '$email'  AND uclassname='$uclassname'");
+    while ($row = mysqli_fetch_array($result)){
+      $threadid = $row['threadn'];
+      mysqli_query($con,"DELETE FROM foruma WHERE threadid = '$threadid'");
+    }
+    mysqli_query($con,"DELETE FROM foruma WHERE email='$email' AND uclassname='$uclassname'");
+    if(mysqli_query($con,"DELETE FROM forumq WHERE email='$email' AND uclassname='$uclassname'")){
+      $errormsgr = "Exited from Class";
+    }
   }
 }
+
 
 
 
@@ -180,6 +193,7 @@ if (isset($_POST['exit'])){
 					</div>
 				</fieldset>
 			</form>
+      <span class="text-danger"><?php if (isset($errormsgr)) { echo $errormsgr; } ?></span>
 		</div>
 	</div>
 </div>
