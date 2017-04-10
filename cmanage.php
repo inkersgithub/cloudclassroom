@@ -28,6 +28,24 @@ if (isset($_POST['add'])) {
 	}
 }
 
+if(isset($_POST['remove'])){
+  $email = $_POST['entervalue'];
+  if($email!="default"){
+    $tables = array("studentclass","request","feedback");
+    foreach($tables as $table) {
+      $query = "DELETE FROM $table WHERE email='$email' AND uclassname='$uclassname']";
+      mysqli_query($con,$query);
+    }
+    $result = mysqli_query($con, "SELECT * FROM forumq WHERE email = '$email'  AND uclassname='$uclassname'");
+    while ($row = mysqli_fetch_array($result)){
+      $threadid = $row['threadid'];
+      mysqli_query($con,"DELETE FROM foruma WHERE threadid = '$threadid'");
+    }
+    mysqli_query($con,"DELETE FROM foruma WHERE email='$email' AND uclassname='$uclassname'");
+    mysqli_query($con,"DELETE FROM forumq WHERE email='$email' AND uclassname='$uclassname'");
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +117,7 @@ if (isset($_POST['add'])) {
             $sql = mysqli_query($con, "SELECT * From studentclass Where uclassname='$uclassname'");
             $row = mysqli_num_rows($sql);
             while ($row = mysqli_fetch_array($sql)){
-              echo "<option value='". $row['email'] ."'>" .$row['studentname'] ."</option>" ;
+              echo "<option value='". $row['email'] ."'>" .$row['studentname'] ."-".$row['email']. "</option>" ;
             }
             ?>
             </select>
