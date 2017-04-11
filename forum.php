@@ -18,7 +18,9 @@ if (isset($_POST['post'])){
    if(mysqli_query($con, "INSERT INTO forumq(name,email,uclassname,thread) VALUES('" . $name . "','" . $email . "','" . $uclassname . "', '" . $thread . "')")) {
 		 mysqli_query($con,"UPDATE studentclass SET fstatus='1' WHERE uclassname='$uclassname'");
 		 mysqli_query($con,"UPDATE studentclass SET fstatus='0' WHERE uclassname='$uclassname' AND email='$email'");
-		 mysqli_query($con,"UPDATE teacherclass SET fstatus='1' WHERE uclassname='$uclassname'");
+		 if($_SESSION['usr_type']!="teacher") {
+		  mysqli_query($con,"UPDATE teacherclass SET fstatus='1' WHERE uclassname='$uclassname'");
+		 }
 		 header("Location: forum.php");
    }
 }

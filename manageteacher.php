@@ -3,10 +3,13 @@ session_start();
 if($_SESSION['usr_type']!="admin" OR isset($_SESSION['usr_id'])==""){
   header('Location:index.php');
 }
-
-
-
 include_once 'dbconnect.php';
+
+if(isset($_POST['remove'])){
+
+
+}
+
 ?>
 
 <!DOCTYPE html>

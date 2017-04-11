@@ -106,7 +106,7 @@ if (isset($_POST['send'])){           //send feedback
       <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus">
       <h3 align="center"><u><?php echo $_SESSION['classname']; ?></u></h3>
       <?php
-      
+
           $res = mysqli_query($con,"SELECT * FROM studentclass WHERE email='$email' AND dstatus='1'");
           if(mysqli_num_rows($res) == 0) {
             echo '<input type="submit" name="data" value="Study materials" class="btnext btnext-primary" /><br>';
@@ -121,7 +121,7 @@ if (isset($_POST['send'])){           //send feedback
               echo '<input type="submit" name="qbank" value="Question Bank" class="btnext btnext-primary" style="border-color: #36ad2a;" /><br>';
           }
 
-          $res = mysqli_query($con,"SELECT * FROM studentclass WHERE email='$email' AND fstatus='1'");
+          $res = mysqli_query($con,"SELECT * FROM studentclass WHERE email='$email' AND mstatus='1'");
           if(mysqli_num_rows($res) == 0) {
               echo '<input type="submit" name="mark" value="Mark/Attendence" class="btnext btnext-primary" /><br>';
           }else{

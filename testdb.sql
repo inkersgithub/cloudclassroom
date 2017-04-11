@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 10, 2017 at 03:49 PM
+-- Generation Time: Apr 11, 2017 at 08:11 AM
 -- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -34,6 +34,13 @@ CREATE TABLE `data` (
   `description` text NOT NULL,
   `path` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data`
+--
+
+INSERT INTO `data` (`sn`, `uclassname`, `filename`, `type`, `description`, `path`) VALUES
+(17, 'zade@gmail.com|DBMS', 'Screenshot from 2017-03-29 22-14-59', 'image/png', 'No Description', 'uploads/zade@gmail.com|DBMS/Screenshot from 2017-03-29 22-14-5958ec5be4880d54.45105962.png');
 
 -- --------------------------------------------------------
 
@@ -67,13 +74,6 @@ CREATE TABLE `foruma` (
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `foruma`
---
-
-INSERT INTO `foruma` (`sn`, `threadid`, `email`, `uclassname`, `name`, `answer`, `date`) VALUES
-(49, '42', 'ashi@gmail.com', 'anoop@gmail.com|DCS', 'Ashi|student', 'uhymjioumjio', '2017-04-08 12:36:17');
-
 -- --------------------------------------------------------
 
 --
@@ -94,7 +94,8 @@ CREATE TABLE `forumq` (
 --
 
 INSERT INTO `forumq` (`threadn`, `name`, `email`, `uclassname`, `thread`, `date`) VALUES
-(42, 'Anoop|teacher', 'anoop@gmail.com', 'anoop@gmail.com|DCS', ',lp;mkil;kml', '2017-04-08 12:35:30');
+(73, 'Zade|teacher', 'zade@gmail.com', 'zade@gmail.com|DBMS', 'abcd', '2017-04-11 09:59:44'),
+(72, 'Zade|teacher', 'zade@gmail.com', 'zade@gmail.com|DBMS', 'rrtregre', '2017-04-11 09:05:54');
 
 -- --------------------------------------------------------
 
@@ -108,13 +109,6 @@ CREATE TABLE `mark` (
   `embedcode` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `mark`
---
-
-INSERT INTO `mark` (`sn`, `uclassname`, `embedcode`) VALUES
-(1, 'anoop@gmail.com|DCS', '<iframe src=\"https://docs.google.com/spreadsheets/d/1Aq16ANRVUFJ35Z6FQY6dwMhAYOmkWO_I6UpKWCaWoc8/pubhtml?widget=true&amp;headers=false\"></iframe>');
-
 -- --------------------------------------------------------
 
 --
@@ -127,6 +121,14 @@ CREATE TABLE `notification` (
   `msg` text NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`sn`, `uclassname`, `msg`, `date`) VALUES
+(97, 'zade@gmail.com|DBMS', 'fdvfdvfd', '2017-04-11 09:07:32'),
+(98, 'zade@gmail.com|DBMS', 'uuuu', '2017-04-11 10:00:04');
 
 -- --------------------------------------------------------
 
@@ -145,8 +147,8 @@ CREATE TABLE `qbank` (
 --
 
 INSERT INTO `qbank` (`sn`, `uclassname`, `question`) VALUES
-(10, 'zade@gmail.com|TOC', 'What is a computer?'),
-(11, 'zade@gmail.com|TOC', 'What is a CPU?');
+(16, 'zade@gmail.com|DBMS', 'hhjjjj'),
+(15, 'zade@gmail.com|DBMS', 'dfbfdgsdf');
 
 -- --------------------------------------------------------
 
@@ -164,13 +166,6 @@ CREATE TABLE `request` (
   `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `request`
---
-
-INSERT INTO `request` (`sn`, `name`, `email`, `institute`, `uclassname`, `classname`, `status`) VALUES
-(65, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', 'zade@gmail.com|DBMS', 'DBMS', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -184,21 +179,12 @@ CREATE TABLE `studentclass` (
   `institute` varchar(70) NOT NULL,
   `classname` varchar(40) NOT NULL,
   `uclassname` varchar(50) NOT NULL,
-  `teachername` varchar(20) NOT NULL
+  `teachername` varchar(20) NOT NULL,
+  `fstatus` int(11) NOT NULL DEFAULT '0',
+  `dstatus` int(11) NOT NULL DEFAULT '0',
+  `qbstatus` int(11) NOT NULL DEFAULT '0',
+  `mstatus` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `studentclass`
---
-
-INSERT INTO `studentclass` (`sn`, `email`, `studentname`, `institute`, `classname`, `uclassname`, `teachername`) VALUES
-(8, 'sree@gmail.com', 'Navaneetha', 'PKDIMS', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
-(9, 'sree@gmail.com', 'Navaneetha', 'PKDIMS', 'MIS', 'anoop@gmail.com|MIS', 'Anoop'),
-(10, 'ashi@gmail.com', 'Ashi', 'MES', 'MIS', 'anoop@gmail.com|MIS', 'Anoop'),
-(11, 'ashi@gmail.com', 'Ashi', 'MES', 'DCS', 'anoop@gmail.com|DCS', 'Anoop'),
-(14, 'sree@gmail.com', 'Navaneetha', 'PKDIMS', 'TOC', 'zade@gmail.com|TOC', 'Zade'),
-(15, 'ashi@gmail.com', 'Ashi', 'MES', 'TOC', 'zade@gmail.com|TOC', 'Zade'),
-(16, 'ashi@gmail.com', 'Ashi', 'MES', 'DBMS', 'zade@gmail.com|DBMS', 'Zade');
 
 -- --------------------------------------------------------
 
@@ -212,18 +198,16 @@ CREATE TABLE `teacherclass` (
   `classname` varchar(40) NOT NULL,
   `uclassname` varchar(50) NOT NULL,
   `teachername` varchar(20) NOT NULL,
-  `institute` varchar(70) NOT NULL
+  `institute` varchar(70) NOT NULL,
+  `fstatus` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teacherclass`
 --
 
-INSERT INTO `teacherclass` (`sn`, `email`, `classname`, `uclassname`, `teachername`, `institute`) VALUES
-(36, 'zade@gmail.com', 'TOC', 'zade@gmail.com|TOC', 'Zade', 'JCET'),
-(38, 'anoop@gmail.com', 'DCS', 'anoop@gmail.com|DCS', 'Anoop', 'JCET'),
-(39, 'anoop@gmail.com', 'MIS', 'anoop@gmail.com|MIS', 'Anoop', 'JCET'),
-(40, 'zade@gmail.com', 'DBMS', 'zade@gmail.com|DBMS', 'Zade', 'JCET');
+INSERT INTO `teacherclass` (`sn`, `email`, `classname`, `uclassname`, `teachername`, `institute`, `fstatus`) VALUES
+(41, 'zade@gmail.com', 'DBMS', 'zade@gmail.com|DBMS', 'Zade', 'JCET', 0);
 
 -- --------------------------------------------------------
 
@@ -245,11 +229,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `institute`, `password`, `type`) VALUES
-(8, 'Navaneetha', 'sree@gmail.com', 'PKDIMS', '21232f297a57a5a743894a0e4a801fc3', 'student'),
 (9, 'Zade', 'zade@gmail.com', 'JCET', '21232f297a57a5a743894a0e4a801fc3', 'teacher'),
 (10, 'Anoop', 'anoop@gmail.com', 'JCET', '21232f297a57a5a743894a0e4a801fc3', 'teacher'),
-(11, 'Ashi', 'ashi@gmail.com', 'MES', '21232f297a57a5a743894a0e4a801fc3', 'student'),
-(12, 'admin', 'admin@gmail.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+(12, 'admin', 'admin@gmail.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
+(16, 'ashi', 'ashi@gmail.com', 'MES', '21232f297a57a5a743894a0e4a801fc3', 'student'),
+(15, 'test', 'test@gmail.com', 'JCET', '21232f297a57a5a743894a0e4a801fc3', 'student');
 
 --
 -- Indexes for dumped tables
@@ -339,22 +323,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `data`
 --
 ALTER TABLE `data`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `foruma`
 --
 ALTER TABLE `foruma`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT for table `forumq`
 --
 ALTER TABLE `forumq`
-  MODIFY `threadn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `threadn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 --
 -- AUTO_INCREMENT for table `mark`
 --
@@ -364,32 +348,32 @@ ALTER TABLE `mark`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 --
 -- AUTO_INCREMENT for table `qbank`
 --
 ALTER TABLE `qbank`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 --
 -- AUTO_INCREMENT for table `studentclass`
 --
 ALTER TABLE `studentclass`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `teacherclass`
 --
 ALTER TABLE `teacherclass`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
