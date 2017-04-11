@@ -7,7 +7,7 @@ include_once 'dbconnect.php';
 
 if(isset($_POST['remove'])){
   $email = $_POST['email'];
-  $result = mysqli_query($con, "SELECT * FROM users WHERE email = '" . $email. "'");
+  $result = mysqli_query($con, "SELECT * FROM users WHERE email = '$email' AND type='student'");
   if(mysqli_num_rows($result) != 0) {
     $successmsg = "Removed Sucessfully";
     $tables = array("studentclass","feedback","foruma","forumq","request","users");

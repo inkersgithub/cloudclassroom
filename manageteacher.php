@@ -5,10 +5,40 @@ if($_SESSION['usr_type']!="admin" OR isset($_SESSION['usr_id'])==""){
 }
 include_once 'dbconnect.php';
 
-if(isset($_POST['remove'])){
 
 
+
+
+if(isset($_POST['delete'])){
+  $email = $_POST['email'];
+  $res = mysqli_query($con,"SELECT uclassname FROM teacherclass WHERE email='$email'");
+  if(mysqli_num_rows($res) != 0) {
+    while ($row = mysqli_fetch_array($res)) {
+      $uclassname = $row['uclassname'];
+      $tables = array("studentclass","request","foruma","forumq","mark","notification","qbank","feedback","teacherclass");
+      foreach($tables as $table) {
+        $query = "DELETE FROM $table WHERE uclassname='$uclassname'";
+        mysqli_query($con,$query);
+      }
+      $result = mysqli_query($con,"SELECT * FROM data WHERE uclassname='$uclassname'");
+      if((mysqli_num_rows($result) != 0) || (is_dir('uploads/'.$uclassname))) {
+        $dir = 'uploads/'.$uclassname;
+        array_map('unlink', glob($dir."/*"));
+        rmdir($dir);
+        mysqli_query($con,"DELETE FROM data WHERE uclassname='$uclassname'");
+      }
+    }
+    mysqli_query($con,"DELETE FROM users WHERE email='$email'");
+  }else {
+    $errormsg = "Ivalid email";
+  }
 }
+
+
+
+
+
+
 
 ?>
 
@@ -94,6 +124,7 @@ if(isset($_POST['remove'])){
   <div class="col-sm-4">
     <input type="submit" name="delete" value="Delete" class="btn btn-primary" />
   </div>
+  <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
 </div>
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/bootstrap.min.js"></script>
